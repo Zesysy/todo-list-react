@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import Logo from "./Logo";
 import { Container } from "../style/elementsStyle";
+import NavItems from "./NavItems";
 
 const FixedWrapper = styled.header`
   position: fixed;
@@ -26,12 +27,7 @@ const Navbar = () => {
       <Container>
         <Wrapper>
           <Logo />
-          <nav>
-            <ul>
-              <li>Home</li>
-              <li>Todos</li>
-            </ul>
-          </nav>
+          <NavItems />
         </Wrapper>
       </Container>
     </FixedWrapper>
