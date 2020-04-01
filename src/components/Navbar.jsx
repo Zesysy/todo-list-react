@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 import Logo from "./Logo";
+import { Container } from "../style/elementsStyle";
 
-const Wrapper = styled.header`
+const FixedWrapper = styled.header`
   position: fixed;
-  display: flex;
   background-color: var(--color-mainDark);
   padding: 0rem 2rem;
   top: 0;
@@ -14,15 +14,27 @@ const Wrapper = styled.header`
   height: 6rem;
 `;
 
+const Wrapper = styled.div`
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+`;
+
 const Navbar = () => {
   return (
-    <Wrapper>
-      <Logo />
-      <ul>
-        <li>Home</li>
-        <li>Todos</li>
-      </ul>
-    </Wrapper>
+    <FixedWrapper>
+      <Container>
+        <Wrapper>
+          <Logo />
+          <nav>
+            <ul>
+              <li>Home</li>
+              <li>Todos</li>
+            </ul>
+          </nav>
+        </Wrapper>
+      </Container>
+    </FixedWrapper>
   );
 };
 
