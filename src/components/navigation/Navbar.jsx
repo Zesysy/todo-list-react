@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import Logo from "./Logo";
-import { Container } from "../style/elementsStyle";
+import Logo from "../Logo";
+import { Container } from "../../style/elementsStyle";
 import NavItems from "./NavItems";
 
 const FixedWrapper = styled.header`

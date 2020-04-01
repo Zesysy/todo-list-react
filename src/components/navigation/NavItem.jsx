@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 const Li = styled.li`
   display: flex;
   height: 100%;
 `;
 
-const A = styled.a`
+const StyledNavLink = styled(NavLink)`
   display: flex;
   text-transform: uppercase;
   align-items: center;
@@ -25,7 +26,7 @@ const A = styled.a`
 const NavItem = ({ link, children }) => {
   return (
     <Li>
-      <A href="https://www.google.com/">{children}</A>
+      <StyledNavLink to={link}>{children}</StyledNavLink>
     </Li>
   );
 };
