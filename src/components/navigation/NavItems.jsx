@@ -17,23 +17,27 @@ const Ul = styled.ul`
 `;
 
 const NavItems = ({ mobile, clicked }) => {
+  const links = [
+    { id: 0, path: "/", placeholder: "Accueil" },
+    { id: 1, path: "/todos", placeholder: "Todos" },
+  ];
+
   return (
     <Nav mobile={mobile}>
+      {" "}
       <Ul mobile={mobile}>
-        <NavItem mobile={mobile} clicked={clicked} link="/">
-          Accueil
-        </NavItem>
-        <NavItem mobile={mobile} clicked={clicked} link="/todos">
-          Todos
-        </NavItem>
-      </Ul>
+        {" "}
+        {links.map(({ path, placeholder }, key) => (
+          <NavItem mobile={mobile} clicked={clicked} link={path} key={key}>
+            {" "}
+            {placeholder}{" "}
+          </NavItem>
+        ))}{" "}
+      </Ul>{" "}
     </Nav>
   );
 };
 
-NavItems.propTypes = {
-  mobile: PropTypes.bool,
-  clicked: PropTypes.func,
-};
+NavItems.propTypes = { mobile: PropTypes.bool, clicked: PropTypes.func };
 
 export default NavItems;
