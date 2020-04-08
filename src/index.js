@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 
 import App from "./App";
@@ -8,14 +9,18 @@ import * as serviceWorker from "./serviceWorker";
 import theme from "./style/theme";
 import GlobalStyle from "./style/globalStyle";
 
+import store from "./store";
+
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <>
-        <App />
-        <GlobalStyle />
-      </>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <>
+          <App />
+          <GlobalStyle />
+        </>
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
