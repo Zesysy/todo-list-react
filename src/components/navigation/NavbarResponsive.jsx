@@ -13,6 +13,11 @@ const FixedWrapper = styled.header`
   left: 0;
   width: 100%;
   height: 6rem;
+  display: none;
+
+  @media ${(props) => props.theme.mediaQueries.smallest} {
+    display: flex;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -22,8 +27,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-
-const Navbar = () => {
+const NavbarResponsive = () => {
   return (
     <FixedWrapper>
       <Container>
@@ -36,4 +40,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarResponsive;
