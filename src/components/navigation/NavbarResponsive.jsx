@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import Logo from "../Logo";
 import { Container } from "../../style/elementsStyle";
-import NavItems from "./NavItems";
+import BurgerMenu from "./BurgerMenu";
 
 const FixedWrapper = styled.header`
   position: fixed;
@@ -33,7 +33,7 @@ const NavbarResponsive = () => {
       <Container>
         <Wrapper>
           <Logo />
-          <NavItems />
+          <BurgerMenu />
         </Wrapper>
       </Container>
     </FixedWrapper>
