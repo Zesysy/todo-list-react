@@ -38,6 +38,9 @@ const NavItems = ({ mobile, clicked }) => {
   );
 };
 
-NavItems.propTypes = { mobile: PropTypes.bool, clicked: PropTypes.func };
+NavItems.propTypes = {
+  mobile: PropTypes.bool,
+  clicked: PropTypes.func,
+};
 
 export default NavItems;
