@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import Logo from "../Logo";
@@ -28,12 +28,17 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 const NavbarResponsive = () => {
+  const [isOpened, setIsOpened] = useState(false);
+
   return (
     <FixedWrapper>
       <Container>
         <Wrapper>
           <Logo />
-          <BurgerMenu />
+          <BurgerMenu
+            opened={isOpened}
+            clicked={() => setIsOpened(!isOpened)}
+          />
         </Wrapper>
       </Container>
     </FixedWrapper>
