@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import Logo from "../Logo";
-import { Container } from "../../style/elementsStyle";
 import BurgerMenu from "./BurgerMenu";
+import NavItems from "./NavItems";
 
 const FixedWrapper = styled.header`
   position: fixed;
   background-color: var(--color-mainDark);
   padding: 0rem 2rem;
+  z-index: 10;
   top: 0;
   left: 0;
   width: 100%;
@@ -27,12 +28,34 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+
+const Menu = styled.div`
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6rem;
+  height: 100vh;
+  background-color: var(--color-mainDark);
+  visibility: ${(props) => (props.opened ? "visible" : "hidden")};
+  transform: translateY(${(props) => (props.opened ? "0" : "-100%")});
+  transition: all 0.1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  display: none;
+
+  @media ${(props) => props.theme.mediaQueries.smallest} {
+    display: flex;
+  }
+`;
+
 const NavbarResponsive = () => {
   const [isOpened, setIsOpened] = useState(false);
 
   return (
-    <FixedWrapper>
-      <Container>
+    <>
+      <FixedWrapper>
         <Wrapper>
           <Logo />
           <BurgerMenu
@@ -40,8 +63,11 @@ const NavbarResponsive = () => {
             clicked={() => setIsOpened(!isOpened)}
           />
         </Wrapper>
-      </Container>
-    </FixedWrapper>
+      </FixedWrapper>
+      <Menu opened={isOpened}>
+        <NavItems mobile clicked={() => setIsOpened(false)} />
+      </Menu>
+    </>
   );
 };
 

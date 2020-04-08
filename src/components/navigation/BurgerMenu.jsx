@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 // Find here ---> https://codepen.io/designcouch/pen/Atyop
 
@@ -60,6 +61,11 @@ const BurgerMenu = ({ opened, clicked }) => {
       <span />
     </StyledBurger>
   );
+};
+
+BurgerMenu.propTypes = {
+  opened: PropTypes.bool.isRequired,
+  clicked: PropTypes.func.isRequired,
 };
 
 export default BurgerMenu;
