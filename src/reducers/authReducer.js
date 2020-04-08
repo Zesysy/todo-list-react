@@ -1,3 +1,5 @@
-export default (state, action) => {
+const initialState = {};
+
+export default (state = initialState, action) => {
   return "something";
 };
