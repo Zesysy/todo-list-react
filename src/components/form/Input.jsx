@@ -4,9 +4,9 @@ import styled from "styled-components";
 const InputWrapper = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: column;
   position: relative;
   margin-bottom: 3.5rem;
+  flex-direction: column;
 
   &:last-of-type {
     margin-bottom: 4.5rem;

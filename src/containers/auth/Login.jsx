@@ -5,13 +5,11 @@ import * as yup from "yup";
 import { FormWrapper, StyledForm } from "../../style/elementsStyle";
 import Input from "../../components/form/Input";
 import Button from "../../components/form/Button";
+import Heading from "../../components/Heading";
 
 const LoginSchema = yup.object().shape({
   email: yup.string().email("Email invalide").required("L'email est requis"),
-  password: yup
-    .string()
-    .required("Le mot de passe est requis")
-    .min(8, "Trop court"),
+  password: yup.string().required("Le mot de passe est requis"),
 });
 
 const Login = () => {
@@ -28,7 +26,12 @@ const Login = () => {
     >
       {({ isSubmitting, isValid }) => (
         <FormWrapper>
-          <h1>Identifiez-vous ici</h1>
+          <Heading noMargin size="h1" color="white">
+            Connectez-vous à votre compte
+          </Heading>
+          <Heading size="h4" color="white">
+            Rentrez vos coordonnées ici
+          </Heading>
           <StyledForm>
             <Field
               type="email"
