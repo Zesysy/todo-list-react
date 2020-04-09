@@ -6,6 +6,7 @@ import { FormWrapper, StyledForm } from "../../style/elementsStyle";
 import Input from "../../components/form/Input";
 import Button from "../../components/form/Button";
 import Heading from "../../components/Heading";
+import { loginFields } from "../../data/fieldItems";
 
 const LoginSchema = yup.object().shape({
   email: yup.string().email("Email invalide").required("L'email est requis"),
@@ -15,6 +16,7 @@ const LoginSchema = yup.object().shape({
     .min(8, "Le mot de passe est top court"),
 });
 
+// TODO: See to merge them with SignUp
 const Login = () => {
   return (
     <Formik
@@ -36,18 +38,15 @@ const Login = () => {
             Rentrez vos coordonnées ici
           </Heading>
           <StyledForm>
-            <Field
-              type="email"
-              name="email"
-              placeholder="Votre email ..."
-              component={Input}
-            />
-            <Field
-              type="password"
-              name="password"
-              placeholder="Votre mot de passe ..."
-              component={Input}
-            />
+            {loginFields.map(({ type, name, placeholder }, key) => (
+              <Field
+                key={key}
+                type={type}
+                name={name}
+                placeholder={placeholder}
+                component={Input}
+              />
+            ))}
             <Button disabled={!isValid} type="submit">
               Identification
             </Button>

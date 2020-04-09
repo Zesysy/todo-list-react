@@ -6,6 +6,7 @@ import { FormWrapper, StyledForm } from "../../style/elementsStyle";
 import Input from "../../components/form/Input";
 import Button from "../../components/form/Button";
 import Heading from "../../components/Heading";
+import { signUpFields } from "../../data/fieldItems";
 
 const SignUpSchema = yup.object().shape({
   firstName: yup
@@ -29,6 +30,7 @@ const SignUpSchema = yup.object().shape({
     .required("Vous devez confirmer votre mot de passe"),
 });
 
+// TODO: See to merge them with Login
 const SignUp = () => {
   return (
     <Formik
@@ -53,36 +55,15 @@ const SignUp = () => {
             Rentrez vos coordonnées ici
           </Heading>
           <StyledForm>
-            <Field
-              type="text"
-              name="firstName"
-              placeholder="Votre prénom"
-              component={Input}
-            />
-            <Field
-              type="text"
-              name="lastName"
-              placeholder="Votre nom"
-              component={Input}
-            />
-            <Field
-              type="email"
-              name="email"
-              placeholder="Votre email ..."
-              component={Input}
-            />
-            <Field
-              type="password"
-              name="password"
-              placeholder="Votre mot de passe ..."
-              component={Input}
-            />
-            <Field
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirmez votre mot de passe ..."
-              component={Input}
-            />
+            {signUpFields.map(({ type, name, placeholder }, key) => (
+              <Field
+                key={key}
+                type={type}
+                name={name}
+                placeholder={placeholder}
+                component={Input}
+              />
+            ))}
             <Button disabled={!isValid} type="submit">
               Enregistrer
             </Button>
