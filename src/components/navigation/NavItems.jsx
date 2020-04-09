@@ -20,6 +20,7 @@ const NavItems = ({ mobile, clicked }) => {
   const links = [
     { id: 0, path: "/", placeholder: "Accueil" },
     { id: 1, path: "/todos", placeholder: "Todos" },
+    { id: 2, path: "/login", placeholder: "Connexion" },
   ];
 
   return (

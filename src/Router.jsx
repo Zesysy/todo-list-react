@@ -3,12 +3,14 @@ import { Route, Switch, Redirect } from "react-router-dom";
 
 import Home from "./containers/Home";
 import Todos from "./containers/Todos";
+import Login from "./containers/auth/Login";
 
 const Router = () => {
   return (
     <Switch>
       <Route path="/" exact component={Home} />
       <Route path="/todos" component={Todos} />
+      <Route path="/login" component={Login} />
       <Redirect to="/" />
     </Switch>
   );
