@@ -4,6 +4,7 @@ import * as yup from "yup";
 
 import { FormWrapper, StyledForm } from "../../style/elementsStyle";
 import Input from "../../components/form/Input";
+import Button from "../../components/form/Button";
 
 const LoginSchema = yup.object().shape({
   email: yup.string().email("Email invalide").required("L'email est requis"),
@@ -41,7 +42,9 @@ const Login = () => {
               placeholder="Votre mot de passe ..."
               component={Input}
             />
-            <button type="submit">Envoyer</button>
+            <Button disabled={!isValid} type="submit">
+              Identification
+            </Button>
           </StyledForm>
         </FormWrapper>
       )}

@@ -6,9 +6,10 @@ const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+  margin-bottom: 3.5rem;
 
-  &:not(:last-child) {
-    margin-bottom: 3rem;
+  &:last-of-type {
+    margin-bottom: 4.5rem;
   }
 `;
 
