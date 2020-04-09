@@ -21,20 +21,18 @@ const NavItems = ({ mobile, clicked }) => {
     { id: 0, path: "/", placeholder: "Accueil" },
     { id: 1, path: "/todos", placeholder: "Todos" },
     { id: 2, path: "/login", placeholder: "Connexion" },
+    { id: 2, path: "/signup", placeholder: "Inscription" },
   ];
 
   return (
     <Nav mobile={mobile}>
-      {" "}
       <Ul mobile={mobile}>
-        {" "}
         {links.map(({ path, placeholder }, key) => (
           <NavItem mobile={mobile} clicked={clicked} link={path} key={key}>
-            {" "}
-            {placeholder}{" "}
+            {placeholder}
           </NavItem>
-        ))}{" "}
-      </Ul>{" "}
+        ))}
+      </Ul>
     </Nav>
   );
 };
