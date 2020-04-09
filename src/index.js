@@ -1,7 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import { ReactReduxFirebaseProvider } from "react-redux-firebase";
 import { ThemeProvider } from "styled-components";
+import firebase from "./Firebase/Firebase";
 
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
@@ -11,15 +13,31 @@ import GlobalStyle from "./style/globalStyle";
 
 import store from "./store";
 
+// react-redux-firebase config
+const rrfConfig = {
+  userProfile: "users",
+  useFirestoreForProfile: true, // Firestore for Profile instead of Realtime DB
+  attachAuthIsReady: true, // attaches auth is ready promise to store
+};
+
+// react-redux-firebase props
+const rrfProps = {
+  firebase,
+  config: rrfConfig,
+  dispatch: store.dispatch,
+};
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <>
-          <App />
-          <GlobalStyle />
-        </>
-      </ThemeProvider>
+      <ReactReduxFirebaseProvider {...rrfProps}>
+        <ThemeProvider theme={theme}>
+          <>
+            <App />
+            <GlobalStyle />
+          </>
+        </ThemeProvider>
+      </ReactReduxFirebaseProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
