@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "babel-plugin-styled-components": "^1.10.7",
     "firebase": "^7.13.2",
+    "formik": "^2.1.4",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -18,7 +19,8 @@
     "redux": "^4.0.5",
     "redux-firestore": "^0.13.0",
     "redux-thunk": "^2.3.0",
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.0.1",
+    "yup": "^0.28.3"
   },
   "scripts": {
     "start": "react-scripts start",
