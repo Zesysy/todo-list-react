@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const StyledButton = styled.button`
   width: 100%;
@@ -33,6 +34,12 @@ const Button = ({ children, disabled, ...rest }) => {
       {children}
     </StyledButton>
   );
+};
+
+Button.propTypes = {
+  children: PropTypes.node.isRequired,
+  disabled: PropTypes.bool,
+  rest: PropTypes.oneOfType([PropTypes.object]),
 };
 
 export default Button;

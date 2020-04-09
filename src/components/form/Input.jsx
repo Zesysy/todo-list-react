@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const InputWrapper = styled.div`
   width: 100%;
@@ -49,6 +50,18 @@ const Input = ({ field, form: { touched, errors }, ...props }) => {
       </Error>
     </InputWrapper>
   );
+};
+
+Input.propTypes = {
+  field: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.func,
+  ]).isRequired,
+  touched: PropTypes.bool,
+  errors: PropTypes.string,
+  props: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 export default Input;
