@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Field } from "formik";
 import * as yup from "yup";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import { FormWrapper, StyledForm } from "../../style/elementsStyle";
 import Input from "../../components/form/Input";
@@ -9,6 +10,7 @@ import Button from "../../components/form/Button";
 import Heading from "../../components/Heading";
 import { signUpFields } from "../../data/fieldItems";
 import * as actions from "../../actions";
+import Message from "../../components/Message";
 
 const SignUpSchema = yup.object().shape({
   firstName: yup
@@ -33,7 +35,7 @@ const SignUpSchema = yup.object().shape({
 });
 
 // TODO: See to merge them with Login
-const SignUp = ({ signUp }) => {
+const SignUp = ({ signUp, loading, error }) => {
   return (
     <Formik
       initialValues={{
@@ -44,9 +46,8 @@ const SignUp = ({ signUp }) => {
         confirmPassword: "",
       }}
       validationSchema={SignUpSchema}
-      onSubmit={(values, { setSubmitting }) => {
-        console.log(values);
-        signUp(values);
+      onSubmit={async (values, { setSubmitting }) => {
+        await signUp(values);
         setSubmitting(false);
       }}
     >
@@ -68,9 +69,16 @@ const SignUp = ({ signUp }) => {
                 component={Input}
               />
             ))}
-            <Button disabled={!isValid} type="submit">
+            <Button
+              disabled={!isValid || isSubmitting}
+              loading={loading ? "Inscription en cours..." : null}
+              type="submit"
+            >
               Enregistrer
             </Button>
+            <Message error show={error}>
+              {error}
+            </Message>
           </StyledForm>
         </FormWrapper>
       )}
@@ -78,10 +86,19 @@ const SignUp = ({ signUp }) => {
   );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = ({ auth }) => ({
+  loading: auth.loading,
+  error: auth.error,
+});
 
 const mapDispatchToProps = {
   signUp: actions.signUp,
+};
+
+SignUp.propTypes = {
+  signUp: PropTypes.func,
+  error: PropTypes.string,
+  loading: PropTypes.bool,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

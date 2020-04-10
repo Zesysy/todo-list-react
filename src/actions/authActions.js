@@ -5,15 +5,20 @@ export const signUp = (data) => async (
 ) => {
   const firebase = getFirebase();
   const firestore = getFirestore();
+
+  dispatch({ type: "AUTH_START" });
   try {
     const result = await firebase
       .auth()
       .createUserWithEmailAndPassword(data.email, data.password);
-    console.log(result.user.uid);
 
     await firestore.collection("users").doc(result.user.uid).set({
       firstName: data.firstName,
       lastName: data.lastName,
     });
-  } catch (error) {}
+
+    dispatch({ type: "AUTH_END" });
+  } catch (error) {
+    dispatch({ type: "AUTH_FAIL", payload: error.message });
+  }
 };
