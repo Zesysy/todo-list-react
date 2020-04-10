@@ -1,7 +1,7 @@
 export const signUpFields = [
   { id: 0, type: "text", name: "firstName", placeholder: "Votre prénom" },
   { id: 1, type: "text", name: "lastName", placeholder: "Votre nom" },
-  { id: 2, type: "email", name: "email", placeholder: "Votre prénom" },
+  { id: 2, type: "email", name: "email", placeholder: "Votre email" },
   {
     id: 3,
     type: "password",

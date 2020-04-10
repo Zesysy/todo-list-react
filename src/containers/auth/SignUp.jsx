@@ -1,12 +1,14 @@
 import React from "react";
 import { Formik, Field } from "formik";
 import * as yup from "yup";
+import { connect } from "react-redux";
 
 import { FormWrapper, StyledForm } from "../../style/elementsStyle";
 import Input from "../../components/form/Input";
 import Button from "../../components/form/Button";
 import Heading from "../../components/Heading";
 import { signUpFields } from "../../data/fieldItems";
+import * as actions from "../../actions";
 
 const SignUpSchema = yup.object().shape({
   firstName: yup
@@ -23,7 +25,7 @@ const SignUpSchema = yup.object().shape({
   password: yup
     .string()
     .required("Le mot de passe est requis")
-    .min(8, "Le mot de passe est top court"),
+    .min(8, "Le mot de passe est top court"), // minimum accept to Firebase
   confirmPassword: yup
     .string()
     .oneOf([yup.ref("password"), null], `Ce n'est pas le même mot de passe`)
@@ -31,7 +33,7 @@ const SignUpSchema = yup.object().shape({
 });
 
 // TODO: See to merge them with Login
-const SignUp = () => {
+const SignUp = ({ signUp }) => {
   return (
     <Formik
       initialValues={{
@@ -44,6 +46,8 @@ const SignUp = () => {
       validationSchema={SignUpSchema}
       onSubmit={(values, { setSubmitting }) => {
         console.log(values);
+        signUp(values);
+        setSubmitting(false);
       }}
     >
       {({ isSubmitting, isValid }) => (
@@ -74,4 +78,10 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = {
+  signUp: actions.signUp,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

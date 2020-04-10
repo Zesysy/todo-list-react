@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { ReactReduxFirebaseProvider } from "react-redux-firebase";
 import { ThemeProvider } from "styled-components";
-import firebase from "./Firebase/Firebase";
+import firebase from "./firebase/Firebase";
 
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
