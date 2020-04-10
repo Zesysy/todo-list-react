@@ -9,6 +9,11 @@ export const signUp = (data) => async (
     const result = await firebase
       .auth()
       .createUserWithEmailAndPassword(data.email, data.password);
-    console.log(result);
+    console.log(result.user.uid);
+
+    await firestore.collection("users").doc(result.user.uid).set({
+      firstName: data.firstName,
+      lastName: data.lastName,
+    });
   } catch (error) {}
 };
