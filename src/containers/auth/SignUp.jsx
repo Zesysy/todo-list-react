@@ -104,7 +104,7 @@ const mapDispatchToProps = {
 
 SignUp.propTypes = {
   signUp: PropTypes.func,
-  error: PropTypes.string,
+  error: PropTypes.bool,
   loading: PropTypes.bool,
 };
 
