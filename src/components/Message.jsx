@@ -28,7 +28,7 @@ Message.propTypes = {
   children: PropTypes.node,
   error: PropTypes.bool,
   success: PropTypes.bool,
-  show: PropTypes.bool,
+  show: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 };
 
 export default Message;

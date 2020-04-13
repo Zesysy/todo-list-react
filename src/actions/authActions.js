@@ -1,3 +1,5 @@
+import * as actions from "../actions/authActionsTypes";
+
 export const signUp = (data) => async (
   dispatch,
   getState,
@@ -6,7 +8,7 @@ export const signUp = (data) => async (
   const firebase = getFirebase();
   const firestore = getFirestore();
 
-  dispatch({ type: "AUTH_START" });
+  dispatch({ type: actions.AUTH_START });
   try {
     const result = await firebase
       .auth()
@@ -17,9 +19,9 @@ export const signUp = (data) => async (
       lastName: data.lastName,
     });
 
-    dispatch({ type: "AUTH_SUCCESS" });
+    dispatch({ type: actions.AUTH_SUCCESS });
   } catch (error) {
-    dispatch({ type: "AUTH_FAIL", payload: error.message });
+    dispatch({ type: actions.AUTH_FAIL, payload: error.message });
   }
-  dispatch({ type: "AUTH_END" });
+  dispatch({ type: actions.AUTH_END });
 };
