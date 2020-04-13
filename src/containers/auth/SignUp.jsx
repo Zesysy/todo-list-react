@@ -4,7 +4,12 @@ import * as yup from "yup";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { FormWrapper, StyledForm } from "../../style/elementsStyle";
+import {
+  FormWrapper,
+  StyledForm,
+  MessageWrapper,
+} from "../../style/elementsStyle";
+
 import Input from "../../components/form/Input";
 import Button from "../../components/form/Button";
 import Heading from "../../components/Heading";
@@ -76,9 +81,11 @@ const SignUp = ({ signUp, loading, error }) => {
             >
               Enregistrer
             </Button>
-            <Message error show={error}>
-              {error}
-            </Message>
+            <MessageWrapper>
+              <Message error show={error}>
+                {error}
+              </Message>
+            </MessageWrapper>
           </StyledForm>
         </FormWrapper>
       )}

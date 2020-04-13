@@ -25,6 +25,13 @@ export const FormWrapper = styled.div`
 
 export const StyledForm = styled(Form)`
   display: flex;
+  position: relative;
+  align-items: center;
   width: 100%;
   flex-direction: column;
+`;
+
+export const MessageWrapper = styled.div`
+  position: absolute;
+  bottom: -3rem;
 `;

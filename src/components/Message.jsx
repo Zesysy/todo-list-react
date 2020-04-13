@@ -3,15 +3,16 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const StyledParagraph = styled.p`
-  font-weight: 700;
   font-size: 1.2rem;
-  color: ${({ error, success }) => {
-    if (error) return "var(--color-error)";
-    if (success) return "var(--color-validation)";
-    else return "var(--color-main)";
-  }};
+  color: ${({ error, success }) =>
+    error
+      ? "var(--color-error)"
+      : success
+      ? "var(--color-validation)"
+      : "var(--color-main)"};
   opacity: ${({ show }) => (show ? "1" : "0")};
   visibility: ${({ show }) => (show ? "visibile" : "hidden")};
+  text-align: center;
   transition: all 0.2s;
 `;
 
