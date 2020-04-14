@@ -5,10 +5,18 @@ import { BrowserRouter } from "react-router-dom";
 
 import Layout from "./Layout";
 import Router from "./Router";
+import Loader from "./components/Loader";
+import { LoaderWrapper } from "./style/elementsStyle";
 
 function AuthIsLoaded({ children }) {
+  // Using the react-redux selector to retrieve the authentication status, which gives access to the isLoaded property
   const auth = useSelector((state) => state.firebase.auth);
-  if (!isLoaded(auth)) return <div>Chargement</div>;
+  if (!isLoaded(auth))
+    return (
+      <LoaderWrapper>
+        <Loader />
+      </LoaderWrapper>
+    );
   return children;
 }
 
