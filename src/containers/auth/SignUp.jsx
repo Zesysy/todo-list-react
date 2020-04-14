@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Field } from "formik";
 import * as yup from "yup";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 
 import {
@@ -40,7 +40,10 @@ const SignUpSchema = yup.object().shape({
 });
 
 // TODO: See to merge them with Login
-const SignUp = ({ signUp, loading, error }) => {
+const SignUp = () => {
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
   return (
     <Formik
       initialValues={{
@@ -52,7 +55,7 @@ const SignUp = ({ signUp, loading, error }) => {
       }}
       validationSchema={SignUpSchema}
       onSubmit={async (values, { setSubmitting }) => {
-        await signUp(values);
+        await dispatch(actions.signUp(values));
         setSubmitting(false);
       }}
     >
@@ -76,14 +79,14 @@ const SignUp = ({ signUp, loading, error }) => {
             ))}
             <Button
               disabled={!isValid || isSubmitting}
-              loading={loading ? "Inscription en cours..." : null}
+              loading={auth.loading ? "Inscription en cours..." : null}
               type="submit"
             >
               Enregistrer
             </Button>
             <MessageWrapper>
-              <Message error show={error}>
-                {error}
+              <Message error show={auth.error}>
+                {auth.error}
               </Message>
             </MessageWrapper>
           </StyledForm>
@@ -93,19 +96,10 @@ const SignUp = ({ signUp, loading, error }) => {
   );
 };
 
-const mapStateToProps = ({ auth }) => ({
-  loading: auth.loading,
-  error: auth.error,
-});
-
-const mapDispatchToProps = {
-  signUp: actions.signUp,
-};
-
 SignUp.propTypes = {
   signUp: PropTypes.func,
   error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   loading: PropTypes.bool,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
+export default SignUp;
