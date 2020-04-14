@@ -1,5 +1,6 @@
 import * as actions from "../actions/authActionsTypes";
 
+// Sign up action creator
 export const signUp = (data) => async (
   dispatch,
   getState,

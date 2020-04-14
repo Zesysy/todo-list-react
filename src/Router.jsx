@@ -7,6 +7,7 @@ import Home from "./containers/Home";
 import Todos from "./containers/Todos";
 import Login from "./containers/auth/Login";
 import SignUp from "./containers/auth/SignUp";
+import Logout from "./containers/auth/Logout";
 
 const Router = () => {
   const loggedIn = useSelector((state) => state.firebase.auth.uid);
@@ -17,6 +18,7 @@ const Router = () => {
         <>
           <Route path="/" exact component={Home} />
           <Route path="/todos" component={Todos} />
+          <Route path="/logout" component={Logout} />
           <Redirect to="/" />
         </>
       ))

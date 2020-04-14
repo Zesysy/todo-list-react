@@ -9,7 +9,7 @@ import Loader from "./components/Loader";
 import { LoaderWrapper } from "./style/elementsStyle";
 
 function AuthIsLoaded({ children }) {
-  // Using the react-redux selector to retrieve the authentication status, which gives access to the isLoaded property
+  // Connect to redux state using selector hook
   const auth = useSelector((state) => state.firebase.auth);
   if (!isLoaded(auth))
     return (
