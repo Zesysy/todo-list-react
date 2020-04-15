@@ -1,1 +1,1 @@
-export { signUp, signOut, signIn } from "./authActions";
+export { signUp, signOut, signIn, cleanUp } from "./authActions";

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik, Field } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
@@ -28,6 +28,10 @@ const LoginSchema = yup.object().shape({
 const Login = () => {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(actions.cleanUp());
+  }, [dispatch]);
 
   return (
     <Formik

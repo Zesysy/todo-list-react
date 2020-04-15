@@ -50,3 +50,8 @@ export const signIn = (data) => async (dispatch, getState, { getFirebase }) => {
   }
   dispatch({ type: actions.AUTH_END });
 };
+
+// Clean up state
+export const cleanUp = () => ({
+  type: actions.CLEAN_UP,
+});
