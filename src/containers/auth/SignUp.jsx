@@ -55,7 +55,6 @@ const SignUp = () => {
       validationSchema={SignUpSchema}
       onSubmit={async (values, { setSubmitting }) => {
         await dispatch(actions.signUp(values));
-        setSubmitting(false);
       }}
     >
       {({ isSubmitting, isValid }) => (

@@ -36,9 +36,8 @@ const Login = () => {
         password: "",
       }}
       validationSchema={LoginSchema}
-      onSubmit={async (values, { setSubmitting }) => {
+      onSubmit={async (values) => {
         await dispatch(actions.signIn(values));
-        setSubmitting(false);
       }}
     >
       {({ isSubmitting, isValid }) => (
