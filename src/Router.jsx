@@ -13,9 +13,9 @@ import VerifyEmail from "./containers/auth/VerifyEmail";
 const Router = () => {
   let routes;
 
-  const auth = useSelector((state) => state.firebase.auth);
+  const getAuth = useSelector((state) => state.firebase.auth);
 
-  auth.uid && !auth.emailVerified
+  getAuth.uid && !getAuth.emailVerified
     ? (routes = (
         <>
           <Route path="/verify-email" exact component={VerifyEmail} />
@@ -23,7 +23,7 @@ const Router = () => {
           <Redirect to="/verify-email" />
         </>
       ))
-    : auth.uid && auth.emailVerified
+    : getAuth.uid && getAuth.emailVerified
     ? (routes = (
         <>
           <Route path="/" exact component={Home} />

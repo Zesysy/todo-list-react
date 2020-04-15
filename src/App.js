@@ -10,8 +10,8 @@ import { LoaderWrapper } from "./style/elementsStyle";
 
 function AuthIsLoaded({ children }) {
   // Connect to redux state using selector hook
-  const auth = useSelector((state) => state.firebase.auth);
-  if (!isLoaded(auth))
+  const getAuth = useSelector((state) => state.firebase.auth);
+  if (!isLoaded(getAuth))
     return (
       <LoaderWrapper>
         <Loader />

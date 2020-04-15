@@ -26,7 +26,7 @@ const LoginSchema = yup.object().shape({
 
 // TODO: See to merge them with SignUp
 const Login = () => {
-  const auth = useSelector((state) => state.auth);
+  const getAuth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -64,14 +64,14 @@ const Login = () => {
             ))}
             <Button
               disabled={!isValid || isSubmitting}
-              loading={auth.loading ? "Identification en cours..." : null}
+              loading={getAuth.loading ? "Identification en cours..." : null}
               type="submit"
             >
               Identification
             </Button>
             <MessageWrapper>
-              <Message error show={auth.error}>
-                {auth.error}
+              <Message error show={getAuth.error}>
+                {getAuth.error}
               </Message>
             </MessageWrapper>
           </StyledForm>

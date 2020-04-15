@@ -40,7 +40,7 @@ const SignUpSchema = yup.object().shape({
 
 // TODO: See to merge them with Login
 const SignUp = () => {
-  const auth = useSelector((state) => state.auth);
+  const getAuth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const SignUp = () => {
         confirmPassword: "",
       }}
       validationSchema={SignUpSchema}
-      onSubmit={async (values, { setSubmitting }) => {
+      onSubmit={async (values) => {
         await dispatch(actions.signUp(values));
       }}
     >
@@ -81,14 +81,14 @@ const SignUp = () => {
             ))}
             <Button
               disabled={!isValid || isSubmitting}
-              loading={auth.loading ? "Inscription en cours..." : null}
+              loading={getAuth.loading ? "Inscription en cours..." : null}
               type="submit"
             >
               Enregistrer
             </Button>
             <MessageWrapper>
-              <Message error show={auth.error}>
-                {auth.error}
+              <Message error show={getAuth.error}>
+                {getAuth.error}
               </Message>
             </MessageWrapper>
           </StyledForm>
