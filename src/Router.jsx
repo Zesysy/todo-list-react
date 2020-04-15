@@ -8,12 +8,22 @@ import Todos from "./containers/Todos";
 import Login from "./containers/auth/Login";
 import SignUp from "./containers/auth/SignUp";
 import Logout from "./containers/auth/Logout";
+import VerifyEmail from "./containers/auth/VerifyEmail";
 
 const Router = () => {
-  const loggedIn = useSelector((state) => state.firebase.auth.uid);
   let routes;
 
-  loggedIn
+  const auth = useSelector((state) => state.firebase.auth);
+
+  auth.uid && !auth.emailVerified
+    ? (routes = (
+        <>
+          <Route path="/verify-email" exact component={VerifyEmail} />
+          <Route path="/logout" exact component={Logout} />
+          <Redirect to="/verify-email" />
+        </>
+      ))
+    : auth.uid && auth.emailVerified
     ? (routes = (
         <>
           <Route path="/" exact component={Home} />

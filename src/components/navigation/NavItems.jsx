@@ -24,10 +24,18 @@ const NavItems = ({ mobile, clicked }) => {
   //   { id: 2, path: "/login", placeholder: "Connexion" },
   //   { id: 3, path: "/signup", placeholder: "Inscription" },
   // ];
-  const loggedId = useSelector((state) => state.firebase.auth.uid);
+  const auth = useSelector((state) => state.firebase.auth);
   let links;
 
-  loggedId
+  auth.uid && !auth.emailVerified
+    ? (links = (
+        <Ul mobile={mobile}>
+          <NavItem mobile={mobile} clicked={clicked} link="/logout">
+            Déconnexion
+          </NavItem>
+        </Ul>
+      ))
+    : auth.uid && auth.emailVerified
     ? (links = (
         <Ul mobile={mobile}>
           <NavItem mobile={mobile} clicked={clicked} link="/">
