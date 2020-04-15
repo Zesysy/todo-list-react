@@ -2,19 +2,18 @@ import React from "react";
 import { Formik, Field } from "formik";
 import * as yup from "yup";
 import { useSelector, useDispatch } from "react-redux";
-import PropTypes from "prop-types";
 
 import {
   FormWrapper,
   StyledForm,
   MessageWrapper,
 } from "../../style/elementsStyle";
+import { signUpFields } from "../../data/fieldItems";
+import * as actions from "../../actions";
 
 import Input from "../../components/form/Input";
 import Button from "../../components/form/Button";
 import Heading from "../../components/Heading";
-import { signUpFields } from "../../data/fieldItems";
-import * as actions from "../../actions";
 import Message from "../../components/Message";
 
 const SignUpSchema = yup.object().shape({
@@ -94,12 +93,6 @@ const SignUp = () => {
       )}
     </Formik>
   );
-};
-
-SignUp.propTypes = {
-  signUp: PropTypes.func,
-  error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
-  loading: PropTypes.bool,
 };
 
 export default SignUp;

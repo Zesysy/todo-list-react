@@ -1,12 +1,20 @@
 import React from "react";
 import { Formik, Field } from "formik";
+import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 
-import { FormWrapper, StyledForm } from "../../style/elementsStyle";
+import {
+  FormWrapper,
+  StyledForm,
+  MessageWrapper,
+} from "../../style/elementsStyle";
+import { loginFields } from "../../data/fieldItems";
+import * as actions from "../../actions";
+
 import Input from "../../components/form/Input";
 import Button from "../../components/form/Button";
 import Heading from "../../components/Heading";
-import { loginFields } from "../../data/fieldItems";
+import Message from "../../components/Message";
 
 const LoginSchema = yup.object().shape({
   email: yup.string().email("Email invalide").required("L'email est requis"),
@@ -18,6 +26,9 @@ const LoginSchema = yup.object().shape({
 
 // TODO: See to merge them with SignUp
 const Login = () => {
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
   return (
     <Formik
       initialValues={{
@@ -25,8 +36,9 @@ const Login = () => {
         password: "",
       }}
       validationSchema={LoginSchema}
-      onSubmit={(values, { setSubmitting }) => {
-        console.log(values);
+      onSubmit={async (values, { setSubmitting }) => {
+        await dispatch(actions.signIn(values));
+        setSubmitting(false);
       }}
     >
       {({ isSubmitting, isValid }) => (
@@ -47,9 +59,18 @@ const Login = () => {
                 component={Input}
               />
             ))}
-            <Button disabled={!isValid} type="submit">
+            <Button
+              disabled={!isValid || isSubmitting}
+              loading={auth.loading ? "Identification en cours..." : null}
+              type="submit"
+            >
               Identification
             </Button>
+            <MessageWrapper>
+              <Message error show={auth.error}>
+                {auth.error}
+              </Message>
+            </MessageWrapper>
           </StyledForm>
         </FormWrapper>
       )}

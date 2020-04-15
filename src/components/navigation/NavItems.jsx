@@ -43,6 +43,9 @@ const NavItems = ({ mobile, clicked }) => {
       ))
     : (links = (
         <Ul mobile={mobile}>
+          <NavItem mobile={mobile} clicked={clicked} link="/">
+            Accueil
+          </NavItem>
           <NavItem mobile={mobile} clicked={clicked} link="/login">
             Connexion
           </NavItem>
