@@ -25,9 +25,9 @@ const StyledHeading = styled.h1`
   ${baseHeader};
 `;
 
-const Heading = ({ children, size, color, noMargin }) => {
+const Heading = ({ children, size, color, noMargin, ...rest }) => {
   return (
-    <StyledHeading size={size} noMargin={noMargin} color={color}>
+    <StyledHeading size={size} noMargin={noMargin} color={color} {...rest}>
       {children}
     </StyledHeading>
   );
@@ -38,6 +38,7 @@ Heading.propTypes = {
   size: PropTypes.string,
   color: PropTypes.string,
   noMargin: PropTypes.bool,
+  rest: PropTypes.oneOfType([PropTypes.object]),
 };
 
 export default Heading;
