@@ -15,6 +15,7 @@ import Input from "../../components/form/Input";
 import Button from "../../components/form/Button";
 import Heading from "../../components/Heading";
 import Message from "../../components/Message";
+import CustomLink from "../../components/CustomLink";
 
 const LoginSchema = yup.object().shape({
   email: yup.string().email("Email invalide").required("L'email est requis"),
@@ -69,6 +70,9 @@ const Login = () => {
             >
               Identification
             </Button>
+            <CustomLink link="/recover" color="white">
+              Mot de passe oublier ?
+            </CustomLink>
             <MessageWrapper>
               <Message error show={getAuth.error}>
                 {getAuth.error}
