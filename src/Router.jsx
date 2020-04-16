@@ -16,31 +16,31 @@ const Router = () => {
 
   getAuth.uid && !getAuth.emailVerified
     ? (routes = (
-        <>
+        <Switch>
           <Route path="/verify-email" exact component={VerifyEmail} />
-          <Route path="/logout" component={Logout} />
+          <Route path="/logout" exact component={Logout} />
           <Redirect to="/verify-email" />
-        </>
+        </Switch>
       ))
     : getAuth.uid && getAuth.emailVerified
     ? (routes = (
-        <>
+        <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/todos" component={Todos} />
           <Route path="/logout" component={Logout} />
           <Redirect to="/" />
-        </>
+        </Switch>
       ))
     : (routes = (
-        <>
+        <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={SignUp} />
           <Redirect to="/" />
-        </>
+        </Switch>
       ));
 
-  return <Switch>{routes}</Switch>;
+  return <>{routes}</>;
 };
 
 export default Router;
