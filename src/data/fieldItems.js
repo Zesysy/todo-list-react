@@ -25,3 +25,7 @@ export const loginFields = [
     placeholder: "Votre mot de passe",
   },
 ];
+
+export const recoverPasswordFields = [
+  { id: 0, type: "email", name: "email", placeholder: "Votre email" },
+];
