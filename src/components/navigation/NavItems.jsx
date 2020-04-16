@@ -69,7 +69,6 @@ const NavItems = ({ mobile, clicked }) => {
 NavItems.propTypes = {
   mobile: PropTypes.bool,
   clicked: PropTypes.func,
-  loggedId: PropTypes.string,
 };
 
 export default NavItems;

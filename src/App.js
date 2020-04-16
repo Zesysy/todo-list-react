@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { isLoaded } from "react-redux-firebase";
 import { BrowserRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import Layout from "./Layout";
 import Router from "./Router";
@@ -31,5 +32,9 @@ function App() {
     </BrowserRouter>
   );
 }
+
+AuthIsLoaded.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default App;

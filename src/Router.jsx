@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
-import PropTypes from "prop-types";
 
 import Home from "./containers/Home";
 import Todos from "./containers/Todos";
@@ -19,7 +18,7 @@ const Router = () => {
     ? (routes = (
         <>
           <Route path="/verify-email" exact component={VerifyEmail} />
-          <Route path="/logout" exact component={Logout} />
+          <Route path="/logout" component={Logout} />
           <Redirect to="/verify-email" />
         </>
       ))
@@ -42,10 +41,6 @@ const Router = () => {
       ));
 
   return <Switch>{routes}</Switch>;
-};
-
-Router.propTypes = {
-  loggedIn: PropTypes.string,
 };
 
 export default Router;
