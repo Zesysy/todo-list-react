@@ -18,12 +18,6 @@ const Ul = styled.ul`
 `;
 
 const NavItems = ({ mobile, clicked }) => {
-  // TODO : refactorring ?  const links = [
-  //   { id: 0, path: "/", placeholder: "Accueil" },
-  //   { id: 1, path: "/todos", placeholder: "Todos" },
-  //   { id: 2, path: "/login", placeholder: "Connexion" },
-  //   { id: 3, path: "/signup", placeholder: "Inscription" },
-  // ];
   const auth = useSelector((state) => state.firebase.auth);
   let links;
 

@@ -60,29 +60,21 @@ const CommonForm = ({
           </Button>
           {customLink ? (
             <CustomLink link="/recover" color="white">
-              Mot de passe oublier ?
+              Mot de passe oublié ?
             </CustomLink>
           ) : null}
+          <MessageWrapper>
+            <Message error show={getRecoverPassword.error}>
+              {getRecoverPassword.error}
+            </Message>
+          </MessageWrapper>
           {recover ? (
-            <>
-              <MessageWrapper>
-                <Message error show={getRecoverPassword.error}>
-                  {getRecoverPassword.error}
-                </Message>
-              </MessageWrapper>
-              <MessageWrapper>
-                <Message success show={getRecoverPassword.error === false}>
-                  Message envoyé avec succés
-                </Message>
-              </MessageWrapper>
-            </>
-          ) : (
             <MessageWrapper>
-              <Message error show={getAuth.error}>
-                {getAuth.error}
+              <Message success show={getRecoverPassword.error === false}>
+                Message envoyé avec succés
               </Message>
             </MessageWrapper>
-          )}
+          ) : null}
         </StyledForm>
       </FormWrapper>
     )

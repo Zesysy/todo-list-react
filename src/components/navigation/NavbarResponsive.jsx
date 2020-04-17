@@ -34,6 +34,7 @@ const Menu = styled.div`
   width: 100%;
   left: 0;
   top: 0;
+  z-index: 9;
   display: flex;
   align-items: center;
   justify-content: center;
