@@ -38,7 +38,7 @@ const Login = () => {
         <CommonForm
           isValid={isValid}
           isSubmitting={isSubmitting}
-          loginFormItems={loginFormItems}
+          formItems={loginFormItems}
           customLink
         />
       )}

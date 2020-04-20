@@ -1,3 +1,13 @@
+export const loginFields = [
+  { id: 0, type: "email", name: "email", placeholder: "Votre email" },
+  {
+    id: 1,
+    type: "password",
+    name: "password",
+    placeholder: "Votre mot de passe",
+  },
+];
+
 export const signUpFields = [
   { id: 0, type: "text", name: "firstName", placeholder: "Votre prénom" },
   { id: 1, type: "text", name: "lastName", placeholder: "Votre nom" },
@@ -13,16 +23,6 @@ export const signUpFields = [
     type: "password",
     name: "confirmPassword",
     placeholder: "Confirmez votre mot de passe ...",
-  },
-];
-
-export const loginFields = [
-  { id: 0, type: "email", name: "email", placeholder: "Votre email" },
-  {
-    id: 1,
-    type: "password",
-    name: "password",
-    placeholder: "Votre mot de passe",
   },
 ];
 

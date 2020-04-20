@@ -20,23 +20,23 @@ const CommonForm = ({
   isValid,
   isSubmitting,
   customLink,
-  loginFormItems,
+  formItems,
   recover,
 }) => {
   const getAuth = useSelector((state) => state.auth);
   const getRecoverPassword = useSelector((state) => state.auth.recoverPassword);
 
   return (
-    loginFormItems && (
+    formItems && (
       <FormWrapper>
         <Heading noMargin size="h1" color="white">
-          {loginFormItems.map((item) => item.title)}
+          {formItems.map((item) => item.title)}
         </Heading>
         <Heading size="h4" color="white">
-          {loginFormItems.map((item) => item.subtitle)}
+          {formItems.map((item) => item.subtitle)}
         </Heading>
         <StyledForm>
-          {loginFormItems.map((item) =>
+          {formItems.map((item) =>
             item.fieldItems.map(({ type, name, placeholder }, key) => (
               <Field
                 key={key}
@@ -51,30 +51,38 @@ const CommonForm = ({
             disabled={!isValid || isSubmitting}
             loading={
               getAuth.loading
-                ? loginFormItems.map((item) => item.buttonLoading)
+                ? formItems.map((item) => item.buttonLoading)
                 : null
             }
             type="submit"
           >
-            {loginFormItems.map((item) => item.buttonPlaceHolder)}
+            {formItems.map((item) => item.buttonPlaceHolder)}
           </Button>
           {customLink ? (
             <CustomLink link="/recover" color="white">
               Mot de passe oublié ?
             </CustomLink>
           ) : null}
-          <MessageWrapper>
-            <Message error show={getRecoverPassword.error}>
-              {getRecoverPassword.error}
-            </Message>
-          </MessageWrapper>
           {recover ? (
+            <>
+              <MessageWrapper>
+                <Message error show={getRecoverPassword.error}>
+                  {getRecoverPassword.error}
+                </Message>
+              </MessageWrapper>
+              <MessageWrapper>
+                <Message success show={getRecoverPassword.error === false}>
+                  Message envoyé avec succés
+                </Message>
+              </MessageWrapper>
+            </>
+          ) : (
             <MessageWrapper>
-              <Message success show={getRecoverPassword.error === false}>
-                Message envoyé avec succés
+              <Message error show={getAuth.error}>
+                {getAuth.error}
               </Message>
             </MessageWrapper>
-          ) : null}
+          )}
         </StyledForm>
       </FormWrapper>
     )
@@ -85,7 +93,7 @@ CommonForm.propTypes = {
   isValid: PropTypes.bool.isRequired,
   isSubmitting: PropTypes.bool.isRequired,
   customLink: PropTypes.bool,
-  loginFormItems: PropTypes.arrayOf(
+  formItems: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.object])
   ).isRequired,
   recover: PropTypes.bool,

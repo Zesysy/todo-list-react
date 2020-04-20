@@ -26,10 +26,20 @@ export const signUpFormItems = [
 
 export const recoverPasswordFormItems = [
   {
-    title: " Récupérez votre mot de passe",
+    title: "Récupérez votre mot de passe",
     subtitle: "Renseignez votre email",
     fieldItems: recoverPasswordFields,
     buttonLoading: "Envoi en cours...",
     buttonPlaceHolder: "Envoyer",
+  },
+];
+
+export const profilePasswordFormItems = [
+  {
+    title: "Modifiez votre compte",
+    subtitle: "Ici vous pouvez éditer votre profile",
+    fieldItems: signUpFields,
+    buttonLoading: "Envoi en cours...",
+    buttonPlaceHolder: "Modifier",
   },
 ];

@@ -9,6 +9,7 @@ import SignUp from "./containers/auth/SignUp";
 import Logout from "./containers/auth/Logout";
 import VerifyEmail from "./containers/auth/VerifyEmail";
 import RecoverPassword from "./containers/auth/RecoverPassword";
+import Profile from "./containers/auth/Profile";
 
 const Router = () => {
   let routes;
@@ -29,6 +30,7 @@ const Router = () => {
           <Route path="/" exact component={Home} />
           <Route path="/todos" component={Todos} />
           <Route path="/logout" component={Logout} />
+          <Route path="/profile" component={Profile} />
           <Redirect to="/" />
         </Switch>
       ))

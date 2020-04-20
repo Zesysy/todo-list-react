@@ -31,7 +31,7 @@ const RecoverPassword = () => {
         <CommonForm
           isValid={isValid}
           isSubmitting={isSubmitting}
-          loginFormItems={recoverPasswordFormItems}
+          formItems={recoverPasswordFormItems}
           recover
         />
       )}
