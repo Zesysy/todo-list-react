@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Formik } from "formik";
 import * as yup from "yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import * as actions from "../../actions";
 
@@ -32,6 +32,7 @@ const ProfileSchema = yup.object().shape({
 
 const Profile = () => {
   const dispatch = useDispatch();
+  const getFirebase = useSelector((state) => state.firebase);
 
   useEffect(() => {
     dispatch(actions.cleanUp());
@@ -40,9 +41,9 @@ const Profile = () => {
   return (
     <Formik
       initialValues={{
-        firstName: "",
-        lastName: "",
-        email: "",
+        firstName: getFirebase.profile.firstName,
+        lastName: getFirebase.profile.lastName,
+        email: getFirebase.auth.email,
         password: "",
         confirmPassword: "",
       }}
