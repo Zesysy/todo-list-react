@@ -4,9 +4,10 @@ import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 
 import * as actions from "../../actions";
-
 import { profilePasswordFormItems } from "../../data/formItems";
+
 import CommonForm from "../../components/utils/CommonForm";
+import Modal from "../../components/utils/modal/Modal";
 
 const ProfileSchema = yup.object().shape({
   firstName: yup
@@ -40,28 +41,31 @@ const Profile = () => {
 
   if (!getFirebase.profile.isLoaded) return null; // Check that the state of the firebase profile object is true or not
   return (
-    <Formik
-      initialValues={{
-        firstName: getFirebase.profile.firstName,
-        lastName: getFirebase.profile.lastName,
-        email: getFirebase.auth.email,
-        password: "",
-        confirmPassword: "",
-      }}
-      validationSchema={ProfileSchema}
-      onSubmit={async (values) => {
-        await dispatch(actions.editProfile(values));
-      }}
-    >
-      {({ isSubmitting, isValid }) => (
-        <CommonForm
-          isValid={isValid}
-          isSubmitting={isSubmitting}
-          formItems={profilePasswordFormItems}
-          profile
-        />
-      )}
-    </Formik>
+    <>
+      <Formik
+        initialValues={{
+          firstName: getFirebase.profile.firstName,
+          lastName: getFirebase.profile.lastName,
+          email: getFirebase.auth.email,
+          password: "",
+          confirmPassword: "",
+        }}
+        validationSchema={ProfileSchema}
+        onSubmit={async (values) => {
+          await dispatch(actions.editProfile(values));
+        }}
+      >
+        {({ isSubmitting, isValid }) => (
+          <CommonForm
+            isValid={isValid}
+            isSubmitting={isSubmitting}
+            formItems={profilePasswordFormItems}
+            profile
+          />
+        )}
+      </Formik>
+      <Modal opened>Je suis une modal</Modal>
+    </>
   );
 };
 
