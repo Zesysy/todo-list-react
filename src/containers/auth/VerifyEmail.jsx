@@ -8,9 +8,9 @@ import {
 } from "../../style/elementsStyle";
 import * as actions from "../../actions";
 
-import Heading from "../../components/Heading";
-import Button from "../../components/form/Button";
-import Message from "../../components/Message";
+import Heading from "../../components/custom/Heading";
+import Button from "../../components/utils/Button";
+import Message from "../../components/utils/Message";
 
 const VerifyEmail = () => {
   const getVerifyEmail = useSelector((state) => state.auth.verifyEmail);

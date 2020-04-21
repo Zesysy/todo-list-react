@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../actions";
 
 import { profilePasswordFormItems } from "../../data/formItems";
-import CommonForm from "../../components/CommonForm";
+import CommonForm from "../../components/utils/CommonForm";
 
 const ProfileSchema = yup.object().shape({
   firstName: yup

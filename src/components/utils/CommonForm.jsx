@@ -7,13 +7,13 @@ import {
   FormWrapper,
   StyledForm,
   MessageWrapper,
-} from "../style/elementsStyle";
+} from "../../style/elementsStyle";
 
-import Heading from "./Heading";
-import Input from "./form/Input";
-import Button from "./form/Button";
+import Heading from "../custom/Heading";
+import Input from "./Input";
+import Button from "./Button";
 import Message from "./Message";
-import CustomLink from "./CustomLink";
+import CustomLink from "../custom/Link";
 
 // Content common to auth containers, includes titles, inputs and their placeholder with rendering conditions depending on the component
 const CommonForm = ({

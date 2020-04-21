@@ -4,9 +4,9 @@ import { isLoaded } from "react-redux-firebase";
 import { BrowserRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import Layout from "./Layout";
+import Layout from "./components/utils/Layout";
 import Router from "./Router";
-import Loader from "./components/Loader";
+import Loader from "./components/utils/Loader";
 import { LoaderWrapper } from "./style/elementsStyle";
 
 function AuthIsLoaded({ children }) {

@@ -4,9 +4,9 @@ import { Formik } from "formik";
 import * as yup from "yup";
 
 import * as actions from "../../actions";
-
-import CommonForm from "../../components/CommonForm";
 import { recoverPasswordFormItems } from "../../data/formItems";
+
+import CommonForm from "../../components/utils/CommonForm";
 
 const RecoverSchema = yup.object().shape({
   email: yup.string().email("Email invalide").required("L'email est requis"),
