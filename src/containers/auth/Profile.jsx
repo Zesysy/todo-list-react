@@ -78,7 +78,7 @@ const Profile = () => {
         <Heading noMargin size="h1" color="text">
           Supprimez votre compte
         </Heading>
-        <Heading bold size="h4" color="text">
+        <Heading size="h4" color="text">
           Voulez-vous vraiment le supprimer?
         </Heading>
         <ButtonsWrapper>

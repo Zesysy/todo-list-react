@@ -3,7 +3,7 @@ import "firebase/firestore";
 import "firebase/auth";
 
 const fbConfig = {
-  apiKey: process.env.REACT_APP_APIKEY,
+  apiKey: "AIzaSyB7KaZujI3CMeOqhm2SSuCTW58Ph0tkCK0",
   authDomain: "todosauth-4dff7.firebaseapp.com",
   databaseURL: "https://todosauth-4dff7.firebaseio.com",
   projectId: "todosauth-4dff7",
