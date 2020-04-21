@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import Navbar from "./components/navigation/Navbar";
-import NavbarResponsive from "./components/navigation/NavbarResponsive";
+import Navbar from "../navigation/Navbar";
+import NavbarResponsive from "../navigation/NavbarResponsive";
 
 const MainWrapper = styled.main`
   width: 100%;

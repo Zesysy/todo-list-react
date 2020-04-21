@@ -3,14 +3,20 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const StyledButton = styled.button`
-  width: 100%;
+  width: ${({ contain }) => (contain ? "auto" : "100%")};
   outline: none;
   padding: 1.2rem 5rem;
   border-radius: 2rem;
   font-size: 1.3rem;
   color: var(--color-white);
   box-shadow: 0rem 0.5rem 3.5rem var(--shadow);
-  background-color: var(--color-mainLighter);
+  background-color: ${({ color }) =>
+    color === "red"
+      ? "var(--color-error)"
+      : color === "main"
+      ? "var(--color-main)"
+      : "var(--color-mainLighter)"};
+  margin: 1.5rem 0 2rem 0;
   border: none;
   transition: all 0.2s;
 
@@ -28,9 +34,9 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = ({ children, disabled, loading, ...rest }) => {
+const Button = ({ children, disabled, loading, contain, color, ...rest }) => {
   return (
-    <StyledButton disabled={disabled} {...rest}>
+    <StyledButton color={color} contain={contain} disabled={disabled} {...rest}>
       {loading ? loading : children}
     </StyledButton>
   );
@@ -39,6 +45,8 @@ const Button = ({ children, disabled, loading, ...rest }) => {
 Button.propTypes = {
   children: PropTypes.node.isRequired,
   disabled: PropTypes.bool,
+  contain: PropTypes.bool,
+  color: PropTypes.string,
   rest: PropTypes.oneOfType([PropTypes.object]),
 };
 

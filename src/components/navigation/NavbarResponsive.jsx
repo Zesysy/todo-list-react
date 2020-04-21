@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import Logo from "../Logo";
+import Logo from "../custom/Logo";
 import BurgerMenu from "./BurgerMenu";
 import NavItems from "./NavItems";
 

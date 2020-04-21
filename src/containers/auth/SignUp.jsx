@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import * as actions from "../../actions";
 
 import { signUpFormItems } from "../../data/formItems";
-import CommonForm from "../../components/CommonForm";
+import CommonForm from "../../components/utils/CommonForm";
 
 const SignUpSchema = yup.object().shape({
   firstName: yup

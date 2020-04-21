@@ -4,9 +4,9 @@ import { useDispatch } from "react-redux";
 import * as yup from "yup";
 
 import * as actions from "../../actions";
-
-import CommonForm from "../../components/CommonForm";
 import { loginFormItems } from "../../data/formItems";
+
+import CommonForm from "../../components/utils/CommonForm";
 
 const LoginSchema = yup.object().shape({
   email: yup.string().email("Email invalide").required("L'email est requis"),

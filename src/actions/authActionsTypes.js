@@ -16,3 +16,7 @@ export const RECOVERY_FAIL = "RECOVERY_FAIL";
 export const PROFILE_EDIT_START = "PROFILE_EDIT_START";
 export const PROFILE_EDIT_SUCCESS = "PROFILE_EDIT_SUCCESS";
 export const PROFILE_EDIT_FAIL = "PROFILE_EDIT_FAIL";
+
+export const DELETE_START = "DELETE_START";
+// No SUCCESS action to delete the account, the user will be automatically redirected to the login page
+export const DELETE_FAIL = "DELETE_FAIL";
