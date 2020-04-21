@@ -55,7 +55,7 @@ const SignUp = () => {
         <CommonForm
           isValid={isValid}
           isSubmitting={isSubmitting}
-          loginFormItems={signUpFormItems}
+          formItems={signUpFormItems}
         />
       )}
     </Formik>

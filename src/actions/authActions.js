@@ -17,6 +17,7 @@ export const signUp = (data) => async (
 
     // Send the verification email
     const user = firebase.auth().currentUser;
+    firebase.auth().useDeviceLanguage(); // To apply the default browser preference  & update the language code
     await user.sendEmailVerification();
 
     await firestore.collection("users").doc(result.user.uid).set({
@@ -37,20 +38,22 @@ export const signOut = () => async (dispatch, getState, { getFirebase }) => {
   const firebase = getFirebase();
   try {
     await firebase.auth().signOut();
-  } catch (err) {
-    console.log(err.message);
+  } catch (error) {
+    console.log(error.message);
   }
 };
 
 // Login action creator
 export const signIn = (data) => async (dispatch, getState, { getFirebase }) => {
   const firebase = getFirebase();
+
   dispatch({ type: actions.AUTH_START });
   try {
     await firebase.auth().signInWithEmailAndPassword(data.email, data.password);
+
     dispatch({ type: actions.AUTH_SUCCESS });
-  } catch (err) {
-    dispatch({ type: actions.AUTH_FAIL, payload: err.message });
+  } catch (error) {
+    dispatch({ type: actions.AUTH_FAIL, payload: error.message });
   }
   dispatch({ type: actions.AUTH_END });
 };
@@ -61,19 +64,24 @@ export const cleanUp = () => ({
 });
 
 // Verify email actionTypes
+// Doesn't work with some mail-providers such as @sfr or @wanadoo
+// No solutions found or could provide your own SMTP
 export const verifyEmail = () => async (
   dispatch,
   getState,
   { getFirebase }
 ) => {
   const firebase = getFirebase();
+
   dispatch({ type: actions.VERIFY_START });
   try {
     const user = firebase.auth().currentUser;
+    firebase.auth().useDeviceLanguage();
     await user.sendEmailVerification();
+
     dispatch({ type: actions.VERIFY_SUCCESS });
-  } catch (err) {
-    dispatch({ type: actions.VERIFY_FAIL, payload: err.message });
+  } catch (error) {
+    dispatch({ type: actions.VERIFY_FAIL, payload: error.message });
   }
 };
 
@@ -84,12 +92,48 @@ export const recoverPassword = (data) => async (
   { getFirebase }
 ) => {
   const firebase = getFirebase();
+
   dispatch({ type: actions.RECOVERY_START });
   try {
     // send email here
+    firebase.auth().useDeviceLanguage();
     await firebase.auth().sendPasswordResetEmail(data.email);
+
     dispatch({ type: actions.RECOVERY_SUCCESS });
-  } catch (err) {
-    dispatch({ type: actions.RECOVERY_FAIL, payload: err.message });
+  } catch (error) {
+    dispatch({ type: actions.RECOVERY_FAIL, payload: error.message });
+  }
+};
+
+// Edit profile
+export const editProfile = (data) => async (
+  dispatch,
+  getState,
+  { getFirebase, getFirestore }
+) => {
+  const firebase = getFirebase();
+  const firestore = getFirestore();
+  const user = firebase.auth().currentUser;
+  const { uid: userId, email: userEmail } = getState().firebase.auth;
+
+  dispatch({ type: actions.PROFILE_EDIT_START });
+  try {
+    //edit the user profile
+    if (data.email !== userEmail) {
+      await user.updateEmail(data.email);
+    }
+
+    await firestore.collection("users").doc(userId).set({
+      firstName: data.firstName,
+      lastName: data.lastName,
+    });
+
+    if (data.password.length > 0) {
+      await user.updatePassword(data.password);
+    }
+
+    dispatch({ type: actions.PROFILE_EDIT_SUCCESS });
+  } catch (error) {
+    dispatch({ type: actions.PROFILE_EDIT_FAIL, payload: error.message });
   }
 };

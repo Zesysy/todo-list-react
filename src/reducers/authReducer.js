@@ -11,19 +11,14 @@ const initialState = {
     error: null,
     loading: false,
   },
+  profileEdit: {
+    error: null,
+    loading: false,
+  },
 };
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case actions.AUTH_START:
-      return { ...state, loading: true };
-    case actions.AUTH_END:
-      return { ...state, loading: false };
-    case actions.AUTH_FAIL:
-      return { ...state, loading: false, error: payload };
-    case actions.AUTH_SUCCESS:
-      return { ...state, loading: false, error: false };
-
     case actions.CLEAN_UP:
       return {
         ...state,
@@ -35,7 +30,21 @@ export default (state = initialState, { type, payload }) => {
           loading: false,
           error: null,
         },
+        profileEdit: {
+          ...state.recoverPassword,
+          loading: false,
+          error: null,
+        },
       };
+
+    case actions.AUTH_START:
+      return { ...state, loading: true };
+    case actions.AUTH_END:
+      return { ...state, loading: false };
+    case actions.AUTH_FAIL:
+      return { ...state, loading: false, error: payload };
+    case actions.AUTH_SUCCESS:
+      return { ...state, loading: false, error: false };
 
     case actions.VERIFY_START:
       return { ...state, verifyEmail: { ...state.verifyEmail, loading: true } };
@@ -69,6 +78,30 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         recoverPassword: {
           ...state.recoverPassword,
+          loading: false,
+          error: false,
+        },
+      };
+
+    case actions.PROFILE_EDIT_START:
+      return {
+        ...state,
+        profileEdit: { ...state.profileEdit, loading: true, error: null },
+      };
+    case actions.PROFILE_EDIT_FAIL:
+      return {
+        ...state,
+        profileEdit: {
+          ...state.profileEdit,
+          loading: false,
+          error: payload,
+        },
+      };
+    case actions.PROFILE_EDIT_SUCCESS:
+      return {
+        ...state,
+        profileEdit: {
+          ...state.profileEdit,
           loading: false,
           error: false,
         },

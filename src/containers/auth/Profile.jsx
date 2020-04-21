@@ -38,6 +38,7 @@ const Profile = () => {
     dispatch(actions.cleanUp());
   }, [dispatch]);
 
+  if (!getFirebase.profile.isLoaded) return null; // Check that the state of the firebase profile object is true or not
   return (
     <Formik
       initialValues={{
@@ -48,8 +49,8 @@ const Profile = () => {
         confirmPassword: "",
       }}
       validationSchema={ProfileSchema}
-      onSubmit={(values) => {
-        console.log(values);
+      onSubmit={async (values) => {
+        await dispatch(actions.editProfile(values));
       }}
     >
       {({ isSubmitting, isValid }) => (
@@ -57,6 +58,7 @@ const Profile = () => {
           isValid={isValid}
           isSubmitting={isSubmitting}
           formItems={profilePasswordFormItems}
+          profile
         />
       )}
     </Formik>

@@ -22,9 +22,11 @@ const CommonForm = ({
   customLink,
   formItems,
   recover,
+  profile,
 }) => {
   const getAuth = useSelector((state) => state.auth);
   const getRecoverPassword = useSelector((state) => state.auth.recoverPassword);
+  const getProfileEdit = useSelector((state) => state.auth.profileEdit);
 
   return (
     formItems && (
@@ -76,6 +78,19 @@ const CommonForm = ({
                 </Message>
               </MessageWrapper>
             </>
+          ) : profile ? (
+            <>
+              <MessageWrapper>
+                <Message error show={getProfileEdit.error}>
+                  {getProfileEdit.error}
+                </Message>
+              </MessageWrapper>
+              <MessageWrapper>
+                <Message success show={getProfileEdit.error === false}>
+                  Modification réussie
+                </Message>
+              </MessageWrapper>
+            </>
           ) : (
             <MessageWrapper>
               <Message error show={getAuth.error}>
@@ -97,6 +112,7 @@ CommonForm.propTypes = {
     PropTypes.oneOfType([PropTypes.string, PropTypes.object])
   ).isRequired,
   recover: PropTypes.bool,
+  profile: PropTypes.bool,
 };
 
 export default CommonForm;
