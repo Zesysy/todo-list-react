@@ -15,12 +15,13 @@ const Wrapper = styled.div`
   transition: all 0.1s;
 `;
 
-const Backdrop = ({ opened }) => {
-  return <Wrapper opened={opened} />;
+const Backdrop = ({ opened, closed }) => {
+  return <Wrapper onClick={closed} opened={opened} />;
 };
 
 Backdrop.propTypes = {
   opened: PropTypes.bool,
+  closed: PropTypes.func,
 };
 
 export default Backdrop;

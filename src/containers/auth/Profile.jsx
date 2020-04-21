@@ -1,13 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 
 import * as actions from "../../actions";
 import { profilePasswordFormItems } from "../../data/formItems";
+import { ButtonsWrapper, MessageWrapper } from "../../style/elementsStyle";
 
 import CommonForm from "../../components/utils/CommonForm";
 import Modal from "../../components/utils/modal/Modal";
+import Heading from "../../components/custom/Heading";
+import Button from "../../components/utils/Button";
+import Message from "../../components/utils/Message";
 
 const ProfileSchema = yup.object().shape({
   firstName: yup
@@ -34,6 +38,7 @@ const ProfileSchema = yup.object().shape({
 const Profile = () => {
   const dispatch = useDispatch();
   const getFirebase = useSelector((state) => state.firebase);
+  const [modalOpened, setModalOpened] = useState(false);
 
   useEffect(() => {
     dispatch(actions.cleanUp());
@@ -61,10 +66,29 @@ const Profile = () => {
             isSubmitting={isSubmitting}
             formItems={profilePasswordFormItems}
             profile
+            openedModal={() => setModalOpened(true)}
           />
         )}
       </Formik>
-      <Modal opened>Je suis une modal</Modal>
+      <Modal opened={modalOpened} closed={() => setModalOpened(false)}>
+        <Heading noMargin size="h1" color="text">
+          Supprimez votre compte
+        </Heading>
+        <Heading bold size="h4" color="text">
+          Voulez-vous vraiment le supprimer?
+        </Heading>
+        <ButtonsWrapper>
+          <Button color="red" contain>
+            Supprimer
+          </Button>
+          <Button color="main" contain onClick={() => setModalOpened(false)}>
+            Annuler
+          </Button>
+        </ButtonsWrapper>
+        <MessageWrapper>
+          <Message error>Erreur</Message>
+        </MessageWrapper>
+      </Modal>
     </>
   );
 };

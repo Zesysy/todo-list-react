@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 import Backdrop from "./Backdrop";
 
@@ -35,17 +36,23 @@ const InsideWrapper = styled.div`
   padding: 4rem 3rem;
 `;
 
-const Modal = ({ opened, children }) => {
+const Modal = ({ opened, closed, children }) => {
   return ReactDOM.createPortal(
     // Creates a portal. Portals provide a way to render children into a DOM node that exists outside the hierarchy of the DOM component.
     <>
-      <Backdrop opened={opened} />
+      <Backdrop closed={closed} opened={opened} />
       <WrappedModal opened={opened}>
         <InsideWrapper>{children}</InsideWrapper>
       </WrappedModal>
     </>,
     document.getElementById("id-modal")
   );
+};
+
+Modal.propTypes = {
+  children: PropTypes.node.isRequired,
+  opened: PropTypes.bool.isRequired,
+  closed: PropTypes.func.isRequired,
 };
 
 export default Modal;

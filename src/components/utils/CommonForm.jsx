@@ -7,6 +7,7 @@ import {
   FormWrapper,
   StyledForm,
   MessageWrapper,
+  DeleteAccountWrapper,
 } from "../../style/elementsStyle";
 
 import Heading from "../custom/Heading";
@@ -23,6 +24,7 @@ const CommonForm = ({
   formItems,
   recover,
   profile,
+  openedModal,
 }) => {
   const getAuth = useSelector((state) => state.auth);
   const getRecoverPassword = useSelector((state) => state.auth.recoverPassword);
@@ -87,7 +89,7 @@ const CommonForm = ({
               </MessageWrapper>
               <MessageWrapper>
                 <Message success show={getProfileEdit.error === false}>
-                  Modification réussie
+                  Votre profile a été mis à jour
                 </Message>
               </MessageWrapper>
             </>
@@ -98,6 +100,11 @@ const CommonForm = ({
               </Message>
             </MessageWrapper>
           )}
+          {openedModal ? (
+            <DeleteAccountWrapper onClick={openedModal}>
+              Supprimer votre compte
+            </DeleteAccountWrapper>
+          ) : null}
         </StyledForm>
       </FormWrapper>
     )

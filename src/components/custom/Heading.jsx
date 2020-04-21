@@ -4,7 +4,11 @@ import PropTypes from "prop-types";
 
 const baseHeader = css`
   color: ${({ color }) =>
-    color === "white" ? "var(--color-white)" : "var(--color-main)"};
+    color === "white"
+      ? "var(--color-white)"
+      : color === "text"
+      ? "var(--color-text)"
+      : "var(--color-main)"};
   margin-top: 0;
   letter-spacing: 1px;
   margin-bottom: ${({ noMargin }) => (noMargin ? "0rem" : "3rem")};
