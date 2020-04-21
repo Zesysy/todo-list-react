@@ -137,3 +137,24 @@ export const editProfile = (data) => async (
     dispatch({ type: actions.PROFILE_EDIT_FAIL, payload: error.message });
   }
 };
+
+// Delete user
+export const deleteUser = () => async (
+  dispatch,
+  getState,
+  { getFirebase, getFirestore }
+) => {
+  const firebase = getFirebase();
+  const firestore = getFirestore();
+  const user = firebase.auth().currentUser;
+  const userId = getState().firebase.auth.uid;
+
+  dispatch({ type: actions.DELETE_START });
+  try {
+    await firestore.collection("users").doc(userId).delete();
+
+    await user.delete();
+  } catch (error) {
+    dispatch({ type: actions.DELETE_FAIL, payload: error.message });
+  }
+};

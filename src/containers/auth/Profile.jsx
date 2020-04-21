@@ -5,7 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 import * as actions from "../../actions";
 import { profilePasswordFormItems } from "../../data/formItems";
-import { ButtonsWrapper, MessageWrapper } from "../../style/elementsStyle";
+import {
+  ButtonsWrapper,
+  MessageWrapperToDeleteAccount,
+} from "../../style/elementsStyle";
 
 import CommonForm from "../../components/utils/CommonForm";
 import Modal from "../../components/utils/modal/Modal";
@@ -38,6 +41,7 @@ const ProfileSchema = yup.object().shape({
 const Profile = () => {
   const dispatch = useDispatch();
   const getFirebase = useSelector((state) => state.firebase);
+  const getDeleteUser = useSelector((state) => state.auth.deleteUser);
   const [modalOpened, setModalOpened] = useState(false);
 
   useEffect(() => {
@@ -78,16 +82,24 @@ const Profile = () => {
           Voulez-vous vraiment le supprimer?
         </Heading>
         <ButtonsWrapper>
-          <Button color="red" contain>
+          <Button
+            onClick={() => dispatch(actions.deleteUser())}
+            disabled={getDeleteUser.loading}
+            loading={getDeleteUser.loading ? "Suppression en cours..." : null}
+            color="red"
+            contain
+          >
             Supprimer
           </Button>
           <Button color="main" contain onClick={() => setModalOpened(false)}>
             Annuler
           </Button>
         </ButtonsWrapper>
-        <MessageWrapper>
-          <Message error>Erreur</Message>
-        </MessageWrapper>
+        <MessageWrapperToDeleteAccount>
+          <Message error show={getDeleteUser.error}>
+            {getDeleteUser.error}
+          </Message>
+        </MessageWrapperToDeleteAccount>
       </Modal>
     </>
   );
