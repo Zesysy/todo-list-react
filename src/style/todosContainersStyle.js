@@ -14,3 +14,12 @@ export const InnerWrapper = styled.div`
   align-items: center;
   padding: 5rem 4rem;
 `;
+
+export const WrapperContent = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 60rem;
+  flex-direction: column;
+  margin-top: 2rem;
+`;

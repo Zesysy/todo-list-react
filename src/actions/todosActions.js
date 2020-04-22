@@ -18,12 +18,21 @@ export const addTodo = (data) => async (
       todo: data.todo,
     };
 
-    firestore
-      .collection("todos")
-      .doc(userId)
-      .set({
-        todos: [...result.data().todos, newTodo],
-      });
+    if (!result.data()) {
+      firestore
+        .collection("todos")
+        .doc(userId)
+        .set({
+          todos: [newTodo],
+        });
+    } else {
+      firestore
+        .collection("todos")
+        .doc(userId)
+        .set({
+          todos: [...result.data().todos, newTodo],
+        });
+    }
 
     dispatch({ type: actions.ADD_TODO_SUCCESS });
     return true; // To close the modal
