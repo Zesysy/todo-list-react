@@ -1,13 +1,20 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Formik, Field } from "formik";
 import * as yup from "yup";
 
-import { ButtonsWrapper, StyledForm } from "../../style/elementsStyle";
+import {
+  ButtonsWrapper,
+  StyledForm,
+  MessageWrapperModal,
+} from "../../style/elementsStyle";
+import * as actions from "../../actions";
 
 import Heading from "../../components/custom/Heading";
 import Input from "../../components/utils/Input";
 import Button from "../../components/utils/Button";
 import Modal from "../../components/utils/modal/Modal";
+import Message from "../../components/utils/Message";
 
 const TodoSchema = yup.object().shape({
   todo: yup
@@ -18,6 +25,9 @@ const TodoSchema = yup.object().shape({
 
 const AddTodo = () => {
   const [modalOpened, setModalOpened] = useState(false);
+  const dispatch = useDispatch();
+  const getTodos = useSelector((state) => state.todos);
+
   return (
     <>
       <Button color="main" contain onClick={() => setModalOpened(true)}>
@@ -35,8 +45,11 @@ const AddTodo = () => {
             todo: "",
           }}
           validationSchema={TodoSchema}
-          onSubmit={(values) => {
-            console.log(values);
+          onSubmit={async (values) => {
+            const result = await dispatch(actions.addTodo(values));
+            if (result) {
+              setModalOpened(false);
+            }
           }}
         >
           {({ isSubmitting, isValid }) => (
@@ -53,6 +66,7 @@ const AddTodo = () => {
                   contain
                   type="submit"
                   disabled={!isValid || isSubmitting}
+                  loading={getTodos.loading ? "Ajout..." : null}
                 >
                   Ajouter
                 </Button>
@@ -67,6 +81,11 @@ const AddTodo = () => {
             </StyledForm>
           )}
         </Formik>
+        <MessageWrapperModal>
+          <Message error show={getTodos.error}>
+            {getTodos.error}
+          </Message>
+        </MessageWrapperModal>
       </Modal>
     </>
   );
