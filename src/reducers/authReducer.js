@@ -1,23 +1,23 @@
 import * as actions from "../actions/authActionsTypes";
 
 const initialState = {
-  error: null,
   loading: false,
+  error: null,
   verifyEmail: {
-    error: null,
     loading: false,
+    error: null,
   },
   recoverPassword: {
-    error: null,
     loading: false,
+    error: null,
   },
   profileEdit: {
-    error: null,
     loading: false,
+    error: null,
   },
   deleteUser: {
-    error: null,
     loading: false,
+    error: null,
   },
 };
 
