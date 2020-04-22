@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { ReactReduxFirebaseProvider } from "react-redux-firebase";
 import { ThemeProvider } from "styled-components";
+import { createFirestoreInstance } from "redux-firestore";
 import firebase from "./firebase/Firebase";
 
 import App from "./App";
@@ -25,6 +26,7 @@ const rrfProps = {
   firebase,
   config: rrfConfig,
   dispatch: store.dispatch,
+  createFirestoreInstance,
 };
 
 ReactDOM.render(
