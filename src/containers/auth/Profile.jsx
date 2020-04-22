@@ -5,8 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import * as actions from "../../actions";
 import { profilePasswordFormItems } from "../../data/formItems";
-import { ButtonsWrapper } from "../../style/elementsStyle";
-import { MessageWrapperToDeleteAccount } from "../../style/authContainersStyle";
+import { ButtonsWrapper, MessageWrapperModal } from "../../style/elementsStyle";
 
 import CommonForm from "../../components/utils/CommonForm";
 import Modal from "../../components/utils/modal/Modal";
@@ -76,7 +75,7 @@ const Profile = () => {
         <Heading noMargin size="h1" color="text">
           Supprimez votre compte
         </Heading>
-        <Heading bold size="h4" color="text">
+        <Heading size="h4" color="text">
           Voulez-vous vraiment le supprimer?
         </Heading>
         <ButtonsWrapper>
@@ -93,11 +92,11 @@ const Profile = () => {
             Annuler
           </Button>
         </ButtonsWrapper>
-        <MessageWrapperToDeleteAccount>
+        <MessageWrapperModal>
           <Message error show={getDeleteUser.error}>
             {getDeleteUser.error}
           </Message>
-        </MessageWrapperToDeleteAccount>
+        </MessageWrapperModal>
       </Modal>
     </>
   );

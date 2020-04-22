@@ -4,6 +4,7 @@ import { TodosWrapper, InnerWrapper } from "../../style/todosContainersStyle";
 import { Container } from "../../style/elementsStyle";
 
 import Heading from "../../components/custom/Heading";
+import AddTodo from "./AddTodo";
 
 const Todos = () => {
   return (
@@ -16,6 +17,7 @@ const Todos = () => {
           <Heading size="h4" color="white">
             Tout ce que vous avez à faire pour le moment...
           </Heading>
+          <AddTodo />
         </InnerWrapper>
       </Container>
     </TodosWrapper>

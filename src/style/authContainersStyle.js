@@ -24,11 +24,3 @@ export const DeleteAccountWrapper = styled.div`
     transform: translateY(2px);
   }
 `;
-
-export const MessageWrapperToDeleteAccount = styled.div`
-  position: absolute;
-  bottom: 2rem;
-  padding: 0 3rem;
-  width: 100%;
-  text-shadow: 2px 3px 0px var(--shadow);
-`;
