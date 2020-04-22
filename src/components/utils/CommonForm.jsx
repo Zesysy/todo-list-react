@@ -120,6 +120,7 @@ CommonForm.propTypes = {
   ).isRequired,
   recover: PropTypes.bool,
   profile: PropTypes.bool,
+  openedModal: PropTypes.func,
 };
 
 export default CommonForm;
