@@ -45,7 +45,7 @@ const Button = ({ children, disabled, loading, contain, color, ...rest }) => {
 Button.propTypes = {
   children: PropTypes.node.isRequired,
   disabled: PropTypes.bool,
-  loading: PropTypes.bool,
+  loading: PropTypes.arrayOf(PropTypes.string),
   contain: PropTypes.bool,
   color: PropTypes.string,
   rest: PropTypes.oneOfType([PropTypes.object]),

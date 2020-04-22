@@ -1,11 +1,20 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { Formik, Field } from "formik";
+import * as yup from "yup";
 
-import { ButtonsWrapper } from "../../style/elementsStyle";
+import { ButtonsWrapper, StyledForm } from "../../style/elementsStyle";
 
+import Heading from "../../components/custom/Heading";
+import Input from "../../components/utils/Input";
 import Button from "../../components/utils/Button";
 import Modal from "../../components/utils/modal/Modal";
-import Heading from "../../components/custom/Heading";
+
+const TodoSchema = yup.object().shape({
+  todo: yup
+    .string()
+    .required("Vous devez renseignez une tâche")
+    .min(4, "Trop court"),
+});
 
 const AddTodo = () => {
   const [modalOpened, setModalOpened] = useState(false);
@@ -21,15 +30,43 @@ const AddTodo = () => {
         <Heading size="h4" color="text">
           Notez votre todo et cliquez sur ajouter
         </Heading>
-        <p>Todo à noter ici</p>
-        <ButtonsWrapper>
-          <Button color="main" contain>
-            Ajouter
-          </Button>
-          <Button color="main" contain onClick={() => setModalOpened(false)}>
-            Annuler
-          </Button>
-        </ButtonsWrapper>
+        <Formik
+          initialValues={{
+            todo: "",
+          }}
+          validationSchema={TodoSchema}
+          onSubmit={(values) => {
+            console.log(values);
+          }}
+        >
+          {({ isSubmitting, isValid }) => (
+            <StyledForm>
+              <Field
+                type="text"
+                name="todo"
+                placeholder="Notez votre todo..."
+                component={Input}
+              />
+              <ButtonsWrapper>
+                <Button
+                  color="main"
+                  contain
+                  type="submit"
+                  disabled={!isValid || isSubmitting}
+                >
+                  Ajouter
+                </Button>
+                <Button
+                  color="main"
+                  contain
+                  onClick={() => setModalOpened(false)}
+                >
+                  Annuler
+                </Button>
+              </ButtonsWrapper>
+            </StyledForm>
+          )}
+        </Formik>
       </Modal>
     </>
   );
