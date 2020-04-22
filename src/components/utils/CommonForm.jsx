@@ -7,8 +7,8 @@ import {
   FormWrapper,
   StyledForm,
   MessageWrapper,
-  DeleteAccountWrapper,
 } from "../../style/elementsStyle";
+import { DeleteAccountWrapper } from "../../style/authContainersStyle";
 
 import Heading from "../custom/Heading";
 import Input from "./Input";

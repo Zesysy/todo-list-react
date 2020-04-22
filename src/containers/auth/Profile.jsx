@@ -5,10 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import * as actions from "../../actions";
 import { profilePasswordFormItems } from "../../data/formItems";
-import {
-  ButtonsWrapper,
-  MessageWrapperToDeleteAccount,
-} from "../../style/elementsStyle";
+import { ButtonsWrapper } from "../../style/elementsStyle";
+import { MessageWrapperToDeleteAccount } from "../../style/authContainersStyle";
 
 import CommonForm from "../../components/utils/CommonForm";
 import Modal from "../../components/utils/modal/Modal";

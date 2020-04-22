@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import Home from "./containers/Home";
-import Todos from "./containers/Todos";
+import Todos from "./containers/todos/Todos";
 import Login from "./containers/auth/Login";
 import SignUp from "./containers/auth/SignUp";
 import Logout from "./containers/auth/Logout";
