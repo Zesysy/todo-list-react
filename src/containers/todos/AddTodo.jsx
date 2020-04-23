@@ -73,6 +73,7 @@ const AddTodo = () => {
                 </Button>
                 <Button
                   color="main"
+                  type="button"
                   contain
                   onClick={() => setModalOpened(false)}
                 >

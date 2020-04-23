@@ -35,7 +35,10 @@ const Todos = () => {
         <Loader isWhite />
       </WrapperContent>
     );
-  } else if (!todos[getUserId] && getStatus.requested[`todos/${getUserId}`]) {
+  } else if (
+    (!todos[getUserId] && getStatus.requested[`todos/${getUserId}`]) ||
+    todos[getUserId].todos.length === 0
+  ) {
     content = (
       <WrapperContent>
         <Heading color="white" size="h2">
