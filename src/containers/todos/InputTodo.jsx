@@ -48,7 +48,9 @@ const InputTodo = ({ opened, closed, editTodo }) => {
           }}
           validationSchema={TodoSchema}
           onSubmit={async (values, { resetForm }) => {
-            const response = await dispatch(actions.addTodo(values));
+            const response = editTodo
+              ? await dispatch(actions.editTodo(editTodo.id, values))
+              : await dispatch(actions.addTodo(values));
             if (response) {
               closed();
             }

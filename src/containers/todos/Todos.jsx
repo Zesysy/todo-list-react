@@ -52,8 +52,8 @@ const Todos = () => {
     content = (
       <WrapperContent>
         <Heading color="white" size="h2">
-          Vous avez {todos[getUserId].todos.length}{" "}
-          {todos[getUserId].todos.length > 1 ? "tâches" : "tâche"} à faire
+          Vous avez {todos[getUserId].todos.length}
+          {todos[getUserId].todos.length > 1 ? " tâches" : " tâche"} à faire
         </Heading>
         {todos[getUserId].todos
           .slice(0) // Creates a shallow copy of the object before the reverse to avoid the error: Cannot assign to read only property '0' of object'

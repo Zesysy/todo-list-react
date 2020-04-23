@@ -65,3 +65,30 @@ export const deleteTodo = (id) => async (
     dispatch({ type: actions.DELETE_TODO_FAIL, payload: error.message });
   }
 };
+
+// Edit a todo
+export const editTodo = (id, data) => async (
+  dispatch,
+  getState,
+  { getFirestore }
+) => {
+  const firestore = getFirestore();
+  const userId = getState().firebase.auth.uid;
+
+  dispatch({ type: actions.ADD_TODO_START }); // use the same actions type to addTodo
+  try {
+    const response = await firestore.collection("todos").doc(userId).get();
+    const todos = response.data().todos;
+    const index = todos.findIndex((todo) => todo.id === id);
+    todos[index].todo = data.todo;
+
+    await firestore.collection("todos").doc(userId).update({
+      todos,
+    });
+
+    dispatch({ type: actions.ADD_TODO_SUCCESS });
+    return true; // To close the modal
+  } catch (err) {
+    dispatch({ type: actions.ADD_TODO_FAIL, payload: err.message });
+  }
+};
