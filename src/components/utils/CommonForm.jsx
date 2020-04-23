@@ -7,8 +7,8 @@ import {
   FormWrapper,
   StyledForm,
   MessageWrapper,
-  DeleteAccountWrapper,
 } from "../../style/elementsStyle";
+import { DeleteAccountWrapper } from "../../style/authContainersStyle";
 
 import Heading from "../custom/Heading";
 import Input from "./Input";
@@ -120,6 +120,7 @@ CommonForm.propTypes = {
   ).isRequired,
   recover: PropTypes.bool,
   profile: PropTypes.bool,
+  openedModal: PropTypes.func,
 };
 
 export default CommonForm;

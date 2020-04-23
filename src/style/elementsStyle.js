@@ -50,40 +50,21 @@ export const LoaderWrapper = styled.div`
   justify-content: center;
 `;
 
-export const VerifyEmailWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  align-items: center;
-`;
-
-export const DeleteAccountWrapper = styled.div`
-  cursor: pointer;
-  color: var(--color-error);
-  font-size: 1.3rem;
-  margin-top: 2rem;
-  transition: all 0.2s;
-  &:hover {
-    transform: translateY(-3px);
-  }
-  &:active {
-    transform: translateY(2px);
-  }
-`;
-
 export const ButtonsWrapper = styled.div`
   display: flex;
   width: 100%;
   margin-bottom: 2rem;
   justify-content: space-around;
+
+  @media ${(props) => props.theme.mediaQueries.smallest} {
+    margin-bottom: 0rem;
+  }
 `;
 
-export const MessageWrapperToDeleteAccount = styled.div`
+export const MessageWrapperModal = styled.div`
   position: absolute;
   bottom: 2rem;
-  padding: 0 3rem;
   width: 100%;
+  padding: 0 3rem;
   text-shadow: 2px 3px 0px var(--shadow);
 `;

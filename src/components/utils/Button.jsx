@@ -32,6 +32,10 @@ const StyledButton = styled.button`
     cursor: not-allowed;
     background-color: #333;
   }
+
+  @media ${(props) => props.theme.mediaQueries.smallest} {
+    margin-bottom: 0rem;
+  }
 `;
 
 const Button = ({ children, disabled, loading, contain, color, ...rest }) => {
@@ -43,8 +47,9 @@ const Button = ({ children, disabled, loading, contain, color, ...rest }) => {
 };
 
 Button.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   disabled: PropTypes.bool,
+  loading: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   contain: PropTypes.bool,
   color: PropTypes.string,
   rest: PropTypes.oneOfType([PropTypes.object]),

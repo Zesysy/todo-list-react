@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 // Find here ---> https://loading.io/css
 
@@ -17,7 +18,8 @@ const StylesLoader = styled.div`
     position: absolute;
     width: 32px;
     height: 32px;
-    background: var(--color-mainLight);
+    background: ${({ isWhite }) =>
+      isWhite ? "var(--color-white)" : "var(--color-main)"};
     animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
 
     &:after,
@@ -27,7 +29,8 @@ const StylesLoader = styled.div`
       display: block;
       width: 32px;
       height: 32px;
-      background: var(--color-mainLight);
+      background: ${({ isWhite }) =>
+        isWhite ? "var(--color-white)" : "var(--color-main)"};
     }
 
     &:before {
@@ -62,12 +65,16 @@ const StylesLoader = styled.div`
   }
 `;
 
-const Loader = () => {
+const Loader = ({ isWhite }) => {
   return (
-    <StylesLoader>
+    <StylesLoader isWhite={isWhite}>
       <div></div>
     </StylesLoader>
   );
+};
+
+Loader.propTypes = {
+  isWhite: PropTypes.bool,
 };
 
 export default Loader;

@@ -24,6 +24,11 @@ const WrappedModal = styled.div`
   border-radius: 1rem;
   background-color: var(--color-mainLighter);
   transition: all 0.1s;
+
+  @media ${(props) => props.theme.mediaQueries.smallest} {
+    max-width: 38rem;
+    text-align: center;
+  }
 `;
 
 const InsideWrapper = styled.div`
@@ -36,18 +41,24 @@ const InsideWrapper = styled.div`
   padding: 4rem 3rem;
 `;
 
-const Modal = ({ opened, closed, children }) => {
-  return ReactDOM.createPortal(
-    // Creates a portal. Portals provide a way to render children into a DOM node that exists outside the hierarchy of the DOM component.
-    <>
-      <Backdrop closed={closed} opened={opened} />
-      <WrappedModal opened={opened}>
-        <InsideWrapper>{children}</InsideWrapper>
-      </WrappedModal>
-    </>,
-    document.getElementById("id-modal")
-  );
-};
+// Avoid rendering of all modals
+const Modal = React.memo(
+  ({ opened, closed, children }) => {
+    return ReactDOM.createPortal(
+      // Creates a portal. Portals provide a way to render children into a DOM node that exists outside the hierarchy of the DOM component.
+      <>
+        <Backdrop closed={closed} opened={opened} />
+        <WrappedModal opened={opened}>
+          <InsideWrapper>{children}</InsideWrapper>
+        </WrappedModal>
+      </>,
+      document.getElementById("id-modal")
+    );
+  },
+  (prevProps, nextProps) => {
+    return prevProps.opened === nextProps.opened;
+  }
+);
 
 Modal.propTypes = {
   children: PropTypes.node.isRequired,

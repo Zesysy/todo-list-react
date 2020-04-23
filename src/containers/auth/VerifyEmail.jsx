@@ -1,11 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import {
-  FormWrapper,
-  MessageWrapper,
-  VerifyEmailWrapper,
-} from "../../style/elementsStyle";
+import { FormWrapper, MessageWrapper } from "../../style/elementsStyle";
+import { VerifyEmailWrapper } from "../../style/authContainersStyle";
 import * as actions from "../../actions";
 
 import Heading from "../../components/custom/Heading";
