@@ -55,6 +55,10 @@ export const ButtonsWrapper = styled.div`
   width: 100%;
   margin-bottom: 2rem;
   justify-content: space-around;
+
+  @media ${(props) => props.theme.mediaQueries.smallest} {
+    margin-bottom: 0rem;
+  }
 `;
 
 export const MessageWrapperModal = styled.div`

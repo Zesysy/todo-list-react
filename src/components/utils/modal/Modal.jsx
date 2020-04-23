@@ -24,6 +24,11 @@ const WrappedModal = styled.div`
   border-radius: 1rem;
   background-color: var(--color-mainLighter);
   transition: all 0.1s;
+
+  @media ${(props) => props.theme.mediaQueries.smallest} {
+    max-width: 38rem;
+    text-align: center;
+  }
 `;
 
 const InsideWrapper = styled.div`

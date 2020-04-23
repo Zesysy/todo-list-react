@@ -32,6 +32,10 @@ const StyledButton = styled.button`
     cursor: not-allowed;
     background-color: #333;
   }
+
+  @media ${(props) => props.theme.mediaQueries.smallest} {
+    margin-bottom: 0rem;
+  }
 `;
 
 const Button = ({ children, disabled, loading, contain, color, ...rest }) => {
