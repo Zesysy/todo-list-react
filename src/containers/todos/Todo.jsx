@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import PropTypes from "prop-types";
 
 import {
@@ -7,9 +7,10 @@ import {
   editStyles,
   deleteStyles,
 } from "../../style/todosContainersStyle";
+import Loader from "../../components/utils/Loader";
 
-import DeleteTodo from "./DeleteTodo";
-import InputTodo from "./InputTodo";
+const DeleteTodo = React.lazy(() => import("./DeleteTodo"));
+const InputTodo = React.lazy(() => import("./InputTodo"));
 
 const Todo = ({ todo }) => {
   const [openIsDeleting, setOpenIsDeleting] = useState(false);
@@ -35,16 +36,18 @@ const Todo = ({ todo }) => {
           style={deleteStyles}
           onClick={() => setOpenIsDeleting(true)}
         ></i>
-        <DeleteTodo
-          todo={todo}
-          opened={openIsDeleting}
-          closed={() => setOpenIsDeleting(false)}
-        />
-        <InputTodo
-          editTodo={todo}
-          opened={openIsEditing}
-          closed={() => setOpenIsEditing(false)}
-        />
+        <Suspense fallback={<Loader />}>
+          <DeleteTodo
+            todo={todo}
+            opened={openIsDeleting}
+            closed={() => setOpenIsDeleting(false)}
+          />
+          <InputTodo
+            editTodo={todo}
+            opened={openIsEditing}
+            closed={() => setOpenIsEditing(false)}
+          />
+        </Suspense>
       </Controls>
     </TodoWrapper>
   );
