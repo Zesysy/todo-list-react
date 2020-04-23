@@ -63,7 +63,8 @@ export const deleteStyles = {
 
 export const DeleteTodoWrapper = styled.div`
   margin: 1rem 0rem;
-  font-size: 1.3rem;
+  font-size: 1.7rem;
+  font-weight: 500;
   text-align: center;
-  color: var(--color-white);
+  color: var(--color-text);
 `;
