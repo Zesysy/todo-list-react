@@ -53,7 +53,7 @@ const AddTodo = () => {
             resetForm();
           }}
         >
-          {({ isSubmitting, isValid }) => (
+          {({ isSubmitting, isValid, resetForm }) => (
             <StyledForm>
               <Field
                 type="text"
@@ -75,7 +75,10 @@ const AddTodo = () => {
                   color="main"
                   type="button"
                   contain
-                  onClick={() => setModalOpened(false)}
+                  onClick={() => {
+                    setModalOpened(false);
+                    resetForm();
+                  }}
                 >
                   Annuler
                 </Button>
