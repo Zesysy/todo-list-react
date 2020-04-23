@@ -60,3 +60,10 @@ export const deleteStyles = {
   cursor: "pointer",
   fontSize: "2rem",
 };
+
+export const DeleteTodoWrapper = styled.div`
+  margin: 1rem 0rem;
+  font-size: 1.3rem;
+  text-align: center;
+  color: var(--color-white);
+`;

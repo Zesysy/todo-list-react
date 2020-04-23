@@ -60,7 +60,7 @@ export const ButtonsWrapper = styled.div`
 export const MessageWrapperModal = styled.div`
   position: absolute;
   bottom: 2rem;
-  padding: 0 3rem;
   width: 100%;
+  padding: 0 3rem;
   text-shadow: 2px 3px 0px var(--shadow);
 `;
