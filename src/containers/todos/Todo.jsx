@@ -1,7 +1,9 @@
 import React from "react";
 
+import { TodoWrapper } from "../../style/todosContainersStyle";
+
 const Todo = ({ todo }) => {
-  return <p>{todo.todo}</p>;
+  return <TodoWrapper>{todo.todo}</TodoWrapper>;
 };
 
 export default Todo;

@@ -67,7 +67,7 @@ const Todos = () => {
           <Heading noMargin size="h1" color="white">
             Votre journal de Todos
           </Heading>
-          <Heading size="h4" color="white">
+          <Heading size="h4" color="white" style={{ textAlign: "center" }}>
             Tout ce que vous avez à faire pour le moment...
           </Heading>
           <AddTodo />

@@ -45,11 +45,12 @@ const AddTodo = () => {
             todo: "",
           }}
           validationSchema={TodoSchema}
-          onSubmit={async (values) => {
+          onSubmit={async (values, { resetForm }) => {
             const result = await dispatch(actions.addTodo(values));
             if (result) {
               setModalOpened(false);
             }
+            resetForm();
           }}
         >
           {({ isSubmitting, isValid }) => (
