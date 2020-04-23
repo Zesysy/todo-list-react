@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import PropTypes from "prop-types";
 import { Formik, Field } from "formik";
 import * as yup from "yup";
 
@@ -8,6 +9,7 @@ import {
   StyledForm,
   MessageWrapperModal,
 } from "../../style/elementsStyle";
+import { AddTodoItems, EditTodoItems } from "../../data/todosItems";
 import * as actions from "../../actions";
 
 import Heading from "../../components/custom/Heading";
@@ -23,32 +25,32 @@ const TodoSchema = yup.object().shape({
     .min(4, "Trop court"),
 });
 
-const AddTodo = () => {
-  const [modalOpened, setModalOpened] = useState(false);
+const InputTodo = ({ opened, closed, editTodo }) => {
   const dispatch = useDispatch();
   const getTodos = useSelector((state) => state.todos);
 
   return (
     <>
-      <Button color="main" contain onClick={() => setModalOpened(true)}>
-        Ajouter une tâche
-      </Button>
-      <Modal opened={modalOpened} closed={() => setModalOpened(false)}>
+      <Modal opened={opened} closed={closed}>
         <Heading noMargin size="h1" color="text">
-          Créez votre nouvelle tâche
+          {editTodo
+            ? EditTodoItems.map((item) => item.title)
+            : AddTodoItems.map((item) => item.title)}
         </Heading>
         <Heading size="h4" color="text">
-          Notez votre todo et cliquez sur ajouter
+          {editTodo
+            ? EditTodoItems.map((item) => item.subtitle)
+            : AddTodoItems.map((item) => item.subtitle)}
         </Heading>
         <Formik
           initialValues={{
-            todo: "",
+            todo: editTodo ? editTodo.todo : "",
           }}
           validationSchema={TodoSchema}
           onSubmit={async (values, { resetForm }) => {
-            const result = await dispatch(actions.addTodo(values));
-            if (result) {
-              setModalOpened(false);
+            const response = await dispatch(actions.addTodo(values));
+            if (response) {
+              closed();
             }
             resetForm();
           }}
@@ -67,16 +69,24 @@ const AddTodo = () => {
                   contain
                   type="submit"
                   disabled={!isValid || isSubmitting}
-                  loading={getTodos.loading ? "Ajout..." : null}
+                  loading={
+                    getTodos.loading
+                      ? editTodo
+                        ? EditTodoItems.map((item) => item.buttonLoading)
+                        : AddTodoItems.map((item) => item.buttonLoading)
+                      : null
+                  }
                 >
-                  Ajouter
+                  {editTodo
+                    ? EditTodoItems.map((item) => item.buttonPlaceHolder)
+                    : AddTodoItems.map((item) => item.buttonPlaceHolder)}
                 </Button>
                 <Button
                   color="main"
                   type="button"
                   contain
                   onClick={() => {
-                    setModalOpened(false);
+                    closed();
                     resetForm();
                   }}
                 >
@@ -96,4 +106,13 @@ const AddTodo = () => {
   );
 };
 
-export default AddTodo;
+InputTodo.propTypes = {
+  opened: PropTypes.bool.isRequired,
+  closed: PropTypes.func.isRequired,
+  editTodo: PropTypes.shape({
+    todo: PropTypes.string,
+    id: PropTypes.number,
+  }),
+};
+
+export default InputTodo;

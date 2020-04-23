@@ -11,7 +11,7 @@ export const signUp = (data) => async (
 
   dispatch({ type: actions.AUTH_START });
   try {
-    const result = await firebase
+    const response = await firebase
       .auth()
       .createUserWithEmailAndPassword(data.email, data.password);
 
@@ -20,7 +20,7 @@ export const signUp = (data) => async (
     firebase.auth().useDeviceLanguage(); // To apply the default browser preference  & update the language code
     await user.sendEmailVerification();
 
-    await firestore.collection("users").doc(result.user.uid).set({
+    await firestore.collection("users").doc(response.user.uid).set({
       firstName: data.firstName,
       lastName: data.lastName,
     });

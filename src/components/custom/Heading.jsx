@@ -38,7 +38,7 @@ const Heading = ({ children, size, color, noMargin, ...rest }) => {
 };
 
 Heading.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   size: PropTypes.string,
   color: PropTypes.string,
   noMargin: PropTypes.bool,

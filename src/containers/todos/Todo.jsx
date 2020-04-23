@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 import {
   TodoWrapper,
@@ -8,6 +9,7 @@ import {
 } from "../../style/todosContainersStyle";
 
 import DeleteTodo from "./DeleteTodo";
+import InputTodo from "./InputTodo";
 
 const Todo = ({ todo }) => {
   const [openIsDeleting, setOpenIsDeleting] = useState(false);
@@ -35,12 +37,24 @@ const Todo = ({ todo }) => {
         ></i>
         <DeleteTodo
           todo={todo}
-          show={openIsDeleting}
-          close={() => setOpenIsDeleting(false)}
+          opened={openIsDeleting}
+          closed={() => setOpenIsDeleting(false)}
+        />
+        <InputTodo
+          editTodo={todo}
+          opened={openIsEditing}
+          closed={() => setOpenIsEditing(false)}
         />
       </Controls>
     </TodoWrapper>
   );
+};
+
+Todo.propTypes = {
+  todo: PropTypes.shape({
+    todo: PropTypes.string,
+    id: PropTypes.number,
+  }).isRequired,
 };
 
 export default Todo;

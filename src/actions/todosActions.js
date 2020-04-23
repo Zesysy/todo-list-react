@@ -11,14 +11,14 @@ export const addTodo = (data) => async (
 
   dispatch({ type: actions.ADD_TODO_START });
   try {
-    const result = await firestore.collection("todos").doc(userId).get();
+    const response = await firestore.collection("todos").doc(userId).get();
 
     const newTodo = {
       id: new Date().valueOf(), // To get a unique id
       todo: data.todo,
     };
 
-    if (!result.data()) {
+    if (!response.data()) {
       firestore
         .collection("todos")
         .doc(userId)
@@ -30,7 +30,7 @@ export const addTodo = (data) => async (
         .collection("todos")
         .doc(userId)
         .set({
-          todos: [...result.data().todos, newTodo],
+          todos: [...response.data().todos, newTodo],
         });
     }
 
@@ -52,8 +52,8 @@ export const deleteTodo = (id) => async (
 
   dispatch({ type: actions.DELETE_TODO_START });
   try {
-    const result = await firestore.collection("todos").doc(userId).get();
-    const previousTodos = result.data().todos;
+    const response = await firestore.collection("todos").doc(userId).get();
+    const previousTodos = response.data().todos;
     const newTodos = previousTodos.filter((todo) => todo.id !== id);
 
     await firestore.collection("todos").doc(userId).update({

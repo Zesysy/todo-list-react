@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFirestoreConnect } from "react-redux-firebase";
 
 import {
@@ -9,14 +9,16 @@ import {
 import { Container } from "../../style/elementsStyle";
 
 import Heading from "../../components/custom/Heading";
-import AddTodo from "./AddTodo";
+import InputTodo from "./InputTodo";
 import { useSelector } from "react-redux";
 import Loader from "../../components/utils/Loader";
 import Todo from "./Todo";
+import Button from "../../components/utils/Button";
 
 const Todos = () => {
   const getUserId = useSelector((state) => state.firebase.auth.uid);
   const getStatus = useSelector((state) => state.firestore.status);
+  const [openIsAdding, setOpenIsAdding] = useState(false);
 
   let content;
 
@@ -73,7 +75,13 @@ const Todos = () => {
           <Heading size="h4" color="white" style={{ textAlign: "center" }}>
             Tout ce que vous avez à faire pour le moment...
           </Heading>
-          <AddTodo />
+          <Button color="main" contain onClick={() => setOpenIsAdding(true)}>
+            Ajouter une tâche
+          </Button>
+          <InputTodo
+            opened={openIsAdding}
+            closed={() => setOpenIsAdding(false)}
+          />
           {content}
         </InnerWrapper>
       </Container>
