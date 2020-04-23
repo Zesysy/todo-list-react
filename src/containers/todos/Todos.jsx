@@ -17,7 +17,6 @@ import Button from "../../components/utils/Button";
 
 const Todos = () => {
   const getUserId = useSelector((state) => state.firebase.auth.uid);
-  const getStatus = useSelector((state) => state.firestore.status);
   const [openIsAdding, setOpenIsAdding] = useState(false);
 
   let content;
@@ -37,10 +36,15 @@ const Todos = () => {
         <Loader isWhite />
       </WrapperContent>
     );
-  } else if (
-    (!todos[getUserId] && getStatus.requested[`todos/${getUserId}`]) ||
-    todos[getUserId].todos.length === 0
-  ) {
+  } else if (!todos[getUserId] || !todos[getUserId].todos) {
+    content = (
+      <WrapperContent>
+        <Heading color="white" size="h2">
+          Vous n'avez rien à faire
+        </Heading>
+      </WrapperContent>
+    );
+  } else if (todos[getUserId].todos.length === 0) {
     content = (
       <WrapperContent>
         <Heading color="white" size="h2">
