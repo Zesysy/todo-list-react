@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -14,6 +14,10 @@ import Message from "../../components/utils/Message";
 const DeleteTodo = ({ opened, closed, todo }) => {
   const dispatch = useDispatch();
   const getDeleteTodo = useSelector((state) => state.todos.deleteTodo);
+
+  useEffect(() => {
+    dispatch(actions.cleanUpTodo());
+  }, [dispatch]);
 
   return (
     <Modal opened={opened} closed={closed}>

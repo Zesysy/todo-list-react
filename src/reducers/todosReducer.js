@@ -30,6 +30,13 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         deleteTodo: { ...state.deleteTodo, loading: false, error: payload },
       };
+    case actions.CLEAN_UP_TODO:
+      return {
+        ...state,
+        error: null,
+        loading: false,
+        deleteTodo: { ...state.deleteTodo, loading: false, error: null },
+      };
     default:
       return state;
   }

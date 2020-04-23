@@ -92,3 +92,8 @@ export const editTodo = (id, data) => async (
     dispatch({ type: actions.ADD_TODO_FAIL, payload: err.message });
   }
 };
+
+// Clean up state
+export const cleanUpTodo = () => ({
+  type: actions.CLEAN_UP_TODO,
+});

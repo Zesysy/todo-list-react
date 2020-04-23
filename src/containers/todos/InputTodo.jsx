@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { Formik, Field } from "formik";
@@ -28,6 +28,10 @@ const TodoSchema = yup.object().shape({
 const InputTodo = ({ opened, closed, editTodo }) => {
   const dispatch = useDispatch();
   const getTodos = useSelector((state) => state.todos);
+
+  useEffect(() => {
+    dispatch(actions.cleanUpTodo());
+  }, [dispatch]);
 
   return (
     <>
