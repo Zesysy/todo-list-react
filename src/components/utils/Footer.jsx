@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const FooterWrapper = styled.footer`
   width: 100%;
-  height: 6rem;
+  height: 4rem;
   font-size: 1.5rem;
   display: flex;
   justify-content: center;
@@ -14,10 +14,10 @@ const Footer = () => {
   return (
     <FooterWrapper>
       <p>
-        Made with{" "}
-        <span role="img" aria-label="smiley">
+        Made with
+        <span style={{ margin: "3px" }} role="img" aria-label="smiley">
           ❤️
-        </span>{" "}
+        </span>
         by Sylène Manusset | 2020
       </p>
     </FooterWrapper>

@@ -14,26 +14,48 @@ const baseHeader = css`
   margin-bottom: ${({ noMargin }) => (noMargin ? "0rem" : "3rem")};
 `;
 
-const StyledHeading = styled.h1`
-  font-size: ${(props) =>
-    props.size === "h1"
-      ? "2.3rem"
-      : props.size === "h2"
-      ? "2rem"
-      : props.size === "h3"
-      ? "1.8rem"
-      : props.size === "h4"
-      ? "1.5rem"
-      : "1.5rem"};
+const H1 = styled.h1`
+  ${baseHeader}
+  font-size: ${(props) => (props.size === "h1" ? "2.3rem" : "1rem")};
   ${(props) => (props.size === "h1" ? "text-transform: uppercase" : null)};
+`;
+
+const H2 = styled.h2`
   ${baseHeader};
+  font-size: ${(props) => (props.size === "h2" ? "2rem" : "1rem")};
+`;
+
+const H3 = styled.h3`
+  ${baseHeader};
+  font-size: ${(props) => (props.size === "h3" ? "1.8rem" : "1rem")};
+`;
+
+const H4 = styled.h4`
+  ${baseHeader};
+  font-size: ${(props) => (props.size === "h4" ? "1.5rem" : "1rem")};
 `;
 
 const Heading = ({ children, size, color, noMargin, ...rest }) => {
-  return (
-    <StyledHeading size={size} noMargin={noMargin} color={color} {...rest}>
+  return size === "h1" ? (
+    <H1 size={size} color={color} noMargin={noMargin} {...rest}>
       {children}
-    </StyledHeading>
+    </H1>
+  ) : size === "h2" ? (
+    <H2 size={size} color={color} noMargin={noMargin} {...rest}>
+      {children}
+    </H2>
+  ) : size === "h3" ? (
+    <H3 size={size} color={color} noMargin={noMargin} {...rest}>
+      {children}
+    </H3>
+  ) : size === "h4" ? (
+    <H4 size={size} color={color} noMargin={noMargin} {...rest}>
+      {children}
+    </H4>
+  ) : (
+    <H1 size={size} color={color} noMargin={noMargin} {...rest}>
+      {children}
+    </H1>
   );
 };
 
