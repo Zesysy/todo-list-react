@@ -27,7 +27,7 @@ const SignUpSchema = yup.object().shape({
   confirmPassword: yup
     .string()
     .oneOf([yup.ref("password"), null], `Ce n'est pas le même mot de passe`)
-    .required("Vous devez confirmer votre mot de passe"),
+    .required("Confirmez votre mot de passe"),
 });
 
 const SignUp = () => {
