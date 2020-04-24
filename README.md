@@ -61,7 +61,7 @@ git clone git@github.com:Zesysy/todo-list-react.git
 
 ## Standards
 
-- camelCase is the way to go here![camel](https://github.githubassets.com/images/icons/emoji/unicode/1f42b.png)
+- camelCase is the way to go here 🐫
 - & PascalCase for component names
 
 ## Feature
