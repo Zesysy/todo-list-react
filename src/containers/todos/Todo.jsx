@@ -1,4 +1,5 @@
 import React, { useState, Suspense } from "react";
+import { DateTime } from "luxon";
 import PropTypes from "prop-types";
 
 import {
@@ -16,12 +17,14 @@ const Todo = ({ todo }) => {
   const [openIsDeleting, setOpenIsDeleting] = useState(false);
   const [openIsEditing, setOpenIsEditing] = useState(false);
 
+  let dt = DateTime.fromISO(todo.todoFor);
+
   return (
     <TodoWrapper>
+      {dt.toLocaleString(DateTime.DATE_FULL)}
       <div>
-        {todo.todoFor}
+        {todo.todo}
       </div>
-      {todo.todo}
       <Controls>
         <i
             className="fas fa-marker"
