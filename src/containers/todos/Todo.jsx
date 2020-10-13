@@ -18,10 +18,13 @@ const Todo = ({ todo }) => {
 
   return (
     <TodoWrapper>
+      <div>
+        {todo.todoFor}
+      </div>
       {todo.todo}
       <Controls>
         <i
-          className="fas fa-marker"
+            className="fas fa-marker"
           data-toggle="tooltip"
           data-placement="bottom"
           title="Editer"
@@ -55,6 +58,7 @@ const Todo = ({ todo }) => {
 
 Todo.propTypes = {
   todo: PropTypes.shape({
+    todoFor: PropTypes.string,
     todo: PropTypes.string,
     id: PropTypes.number,
   }).isRequired,

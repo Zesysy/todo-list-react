@@ -49,6 +49,7 @@ const InputTodo = ({ opened, closed, editTodo }) => {
         <Formik
           initialValues={{
             todo: editTodo ? editTodo.todo : "",
+            todoFor: editTodo ? editTodo.todoFor : "",
           }}
           validationSchema={TodoSchema}
           onSubmit={async (values, { resetForm }) => {
@@ -63,6 +64,12 @@ const InputTodo = ({ opened, closed, editTodo }) => {
         >
           {({ isSubmitting, isValid, resetForm }) => (
             <StyledForm>
+              <Field
+                type="date"
+                name="todoFor"
+                
+                component={Input}
+              />
               <Field
                 type="text"
                 name="todo"
