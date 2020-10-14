@@ -16,6 +16,7 @@ export const addTodo = (data) => async (
     const newTodo = {
       id: new Date().valueOf(), // To get a unique id
       todo: data.todo,
+      todoFor: data.todoFor
     };
 
     if (!response.data()) {
@@ -81,6 +82,7 @@ export const editTodo = (id, data) => async (
     const todos = response.data().todos;
     const index = todos.findIndex((todo) => todo.id === id);
     todos[index].todo = data.todo;
+    todos[index].todoFor = data.todoFor;
 
     await firestore.collection("todos").doc(userId).update({
       todos,

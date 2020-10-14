@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { Formik, Field } from "formik";
+import { DateTime } from "luxon";
 import * as yup from "yup";
 
 import {
@@ -33,6 +34,9 @@ const InputTodo = ({ opened, closed, editTodo }) => {
     dispatch(actions.cleanUpTodo());
   }, [dispatch]);
 
+  // Get current date to disable dates beforein datepicker
+  let now = DateTime.local().toISODate();
+
   return (
     <>
       <Modal opened={opened} closed={closed}>
@@ -49,6 +53,7 @@ const InputTodo = ({ opened, closed, editTodo }) => {
         <Formik
           initialValues={{
             todo: editTodo ? editTodo.todo : "",
+            todoFor: editTodo ? editTodo.todoFor : "",
           }}
           validationSchema={TodoSchema}
           onSubmit={async (values, { resetForm }) => {
@@ -63,6 +68,12 @@ const InputTodo = ({ opened, closed, editTodo }) => {
         >
           {({ isSubmitting, isValid, resetForm }) => (
             <StyledForm>
+              <Field
+                type="date"
+                name="todoFor"
+                min={now}
+                component={Input}
+              />
               <Field
                 type="text"
                 name="todo"

@@ -1,4 +1,5 @@
 import React, { useState, Suspense } from "react";
+import { DateTime } from "luxon";
 import PropTypes from "prop-types";
 
 import {
@@ -6,6 +7,9 @@ import {
   Controls,
   editStyles,
   deleteStyles,
+  TodoList,
+  TodoContainer,
+  TodoContent,TodoDate
 } from "../../style/todosContainersStyle";
 import Loader from "../../components/utils/Loader";
 
@@ -16,12 +20,23 @@ const Todo = ({ todo }) => {
   const [openIsDeleting, setOpenIsDeleting] = useState(false);
   const [openIsEditing, setOpenIsEditing] = useState(false);
 
+  let dt = DateTime.fromISO(todo.todoFor);
+
   return (
     <TodoWrapper>
-      {todo.todo}
+      <TodoList>
+        <TodoContainer>
+          <TodoDate>
+            {dt.toLocaleString(DateTime.DATE_SHORT)}
+          </TodoDate>
+          <TodoContent>
+            {todo.todo}
+          </TodoContent>
+        </TodoContainer>
+      </TodoList>
       <Controls>
         <i
-          className="fas fa-marker"
+            className="fas fa-marker"
           data-toggle="tooltip"
           data-placement="bottom"
           title="Editer"
@@ -55,6 +70,7 @@ const Todo = ({ todo }) => {
 
 Todo.propTypes = {
   todo: PropTypes.shape({
+    todoFor: PropTypes.string,
     todo: PropTypes.string,
     id: PropTypes.number,
   }).isRequired,
