@@ -7,6 +7,9 @@ import {
   Controls,
   editStyles,
   deleteStyles,
+  TodoList,
+  TodoContainer,
+  TodoContent,TodoDate
 } from "../../style/todosContainersStyle";
 import Loader from "../../components/utils/Loader";
 
@@ -21,10 +24,16 @@ const Todo = ({ todo }) => {
 
   return (
     <TodoWrapper>
-      {dt.toLocaleString(DateTime.DATE_FULL)}
-      <div>
-        {todo.todo}
-      </div>
+      <TodoList>
+        <TodoContainer>
+          <TodoDate>
+            {dt.toLocaleString(DateTime.DATE_SHORT)}
+          </TodoDate>
+          <TodoContent>
+            {todo.todo}
+          </TodoContent>
+        </TodoContainer>
+      </TodoList>
       <Controls>
         <i
             className="fas fa-marker"

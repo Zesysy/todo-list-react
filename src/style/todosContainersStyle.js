@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const TodosWrapper = styled.div`
+export const TodosWrapper = styled.main`
   width: 100%;
   align-self: flex-start;
   height: 100%;
@@ -9,7 +9,7 @@ export const TodosWrapper = styled.div`
 `;
 
 export const TodoWrapper = styled.div`
-  width: 100%;
+  width: 80%;
   position: relative;
   padding: 4rem 3rem;
   background-color: var(--color-mainLighter);
@@ -68,3 +68,31 @@ export const DeleteTodoWrapper = styled.div`
   text-align: center;
   color: var(--color-text);
 `;
+
+export const TodoList = styled.div `
+  display: flex;
+  flex-direction: column;
+`
+
+export const TodoContainer = styled.div `
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0 20px 0;
+  border-bottom: 1px #fbc1bb solid;
+`
+
+export const TodoContent = styled.div `
+  cursor: pointer;
+`
+
+export const TodoDate = styled.div `
+  display: flex;
+  align-items: center;
+  border: 6px solid var(--color-main);
+  background-color: var(--color-main);
+  color: var(--color-white);
+  border-radius: 50px;
+  min-width: 70px;
+  justify-content: space-between;
+  `

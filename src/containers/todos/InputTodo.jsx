@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { Formik, Field } from "formik";
+import { DateTime } from "luxon";
 import * as yup from "yup";
 
 import {
@@ -32,6 +33,9 @@ const InputTodo = ({ opened, closed, editTodo }) => {
   useEffect(() => {
     dispatch(actions.cleanUpTodo());
   }, [dispatch]);
+
+  // Get current date to disable dates beforein datepicker
+  let now = DateTime.local().toISODate();
 
   return (
     <>
@@ -67,7 +71,7 @@ const InputTodo = ({ opened, closed, editTodo }) => {
               <Field
                 type="date"
                 name="todoFor"
-                
+                min={now}
                 component={Input}
               />
               <Field
