@@ -12,7 +12,7 @@ git clone git@github.com:Zesysy/todo-list-react.git
 
 ## Prerequisites
 
-- npm 6.14.4
+- npm 6.14.7
 
 ## Getting Started
 
