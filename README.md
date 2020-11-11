@@ -1,6 +1,10 @@
 # Journal d'une Todo
 
-Designed to show off my work and allow me to flirt with NextJs
+A Todo management application in React & Redux, with an authentication part with Firebase, and the discovery of a library of Styled Components styles
+
+## Prerequisites
+
+- npm 6.14.8
 
 ## Clone
 
@@ -10,16 +14,18 @@ Clone this repo to your local machine using
 git clone git@github.com:Zesysy/todo-list-react.git
 ```
 
-## Prerequisites
-
-- npm 6.14.7
-
 ## Getting Started
 
-1.  `npm install`
-2.  `npm start`
+1. `npm install` # Install all dependencies
+2. `npm start`  # Runs the dev environment
 
 ![Application view](/src/assets/appView.png)
+
+## Environment variable 
+
+**_ for this project, you need to create a `.env` with those fields _**
+
+`REACT_APP_APIKEY = Key to your API`
 
 ## Built With
 
@@ -33,31 +39,26 @@ git clone git@github.com:Zesysy/todo-list-react.git
 - [PropTypes](https://github.com/facebook/prop-types) - Runtime type checking for React props
 - [Styled Components](https://styled-components.com/) - Allow to write actual CSS code to style the components
 
-## Folder Hierarchy
+### Architecture
 
-- `/node_modules` : is the folder where all the dependencies are installed. Don't touch this
-- `/public`
-- `/src` : where all the code is, this is the folder who get all our interest here.
-
-## `/src`
-
-### Folders
-
-- `/actions` : Contains actions and their types
-- `/assets` : You will find the img
-- `/components` : All my components are here: Button, Heading, CommonForm...
-- `/containers` :All my containers, without style, which call the components : SignUp, Todos...
-- `/data` : Group the different texts used by common components
-- `/firebase` : Firebase configuration folder, where the Api key is located
-- `/reducers` : Contains all reducers
-- `/style` : Groups files containing styled components
-
-### Files
-
-- `index.js`: Is the application's entry point
-- `App.js` : Call area of all components
-- `Router.jx`: Is the application's entry point
-- `store.js`: Is the application's entry point
+```bash
+node_modules # folder where all the dependencies are installed. Don't touch this
+public
+src
+├──components
+    └── actions # Contains actions and their types
+    └── assets # You will find the img
+    └── components # All my components are here# Button, Heading, CommonForm...
+    └── containers #All my containers, without style, which call the components : SignUp, Todos...
+    └── data # Group the different texts used by common components
+    └── firebase # Firebase configuration folder, where the Api key is located
+    └── reducers # Contains all reducers
+    └── style # Groups files containing styled components
+├──index.js # Is the application's entry point
+├──App.js  # Call area of all components
+├──Router.jsx # Is the application's entry point
+├──store.js # Is the application's entry point
+```
 
 ## Standards
 
@@ -75,4 +76,4 @@ git clone git@github.com:Zesysy/todo-list-react.git
 
 ## Authors
 
-- [Sylène](https://github.com/Zesysy) - Developer front-end
+- [Sylène](https://github.com/Zesysy) - Web developer
