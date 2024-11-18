@@ -7,7 +7,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "babel-plugin-styled-components": "^1.10.7",
-    "firebase": "^9.0.2",
+    "firebase": "^11.0.2",
     "formik": "^2.1.4",
     "luxon": "^1.28.1",
     "prop-types": "^15.7.2",
@@ -18,7 +18,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "^5.0.1",
     "redux": "^4.0.5",
-    "redux-firestore": "^0.15.0",
+    "redux-firestore": "^0.15.2",
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.0.1",
     "yup": "^0.28.3"
